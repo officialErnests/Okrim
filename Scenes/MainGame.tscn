@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://bek4s7gdlkrg2"]
+
+[ext_resource type="PackedScene" uid="uid://bjl5dw5ej0h23" path="res://Scenes/Bedroom.tscn" id="1_ybmw1"]
+[ext_resource type="PackedScene" uid="uid://dom8diow7mrbl" path="res://Scenes/kitchen.tscn" id="2_321ql"]
+[ext_resource type="PackedScene" uid="uid://b7d24dojvn7y" path="res://Scenes/Bathroom.tscn" id="3_d4f28"]
+[ext_resource type="PackedScene" uid="uid://bhd4nboo20npf" path="res://Scenes/living_room.tscn" id="4_iuea6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ybmw1"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+energy_multiplier = 0.0
+
+[sub_resource type="Sky" id="Sky_321ql"]
+sky_material = SubResource("ProceduralSkyMaterial_ybmw1")
+
+[sub_resource type="Environment" id="Environment_d4f28"]
+sky = SubResource("Sky_321ql")
+ambient_light_source = 2
+ambient_light_color = Color(0, 0, 1, 1)
+ambient_light_energy = 0.2
+reflected_light_source = 1
+glow_bloom = 1.0
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(1, 1, 1, 1)
+fog_light_energy = 0.95
+fog_density = 0.38
+fog_sky_affect = 0.0
+fog_depth_end = 3869.5
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_d4f28")
+
+[node name="Bedroom" parent="." instance=ExtResource("1_ybmw1")]
+
+[node name="Kitchen" parent="." instance=ExtResource("2_321ql")]
+visible = false
+
+[node name="Bathroom" parent="." instance=ExtResource("3_d4f28")]
+visible = false
+
+[node name="LivingRoom" parent="." instance=ExtResource("4_iuea6")]
+visible = false
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.984808, -3.34702e-08, 0.173648, -0.0176869, 0.994799, 0.100308, -0.172745, -0.101855, 0.979686, 0, 2, 0)
+fov = 91.9
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+shadow_enabled = true
+omni_range = 10.0

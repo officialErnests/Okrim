@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgwe5onfmyda"]
+
+[ext_resource type="PackedScene" uid="uid://ppd6qmg4jau" path="res://Assets/Bed.gltf" id="1_vd4f3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vd4f3"]
+size = Vector3(3.4, 1.6, 1.8)
+
+[node name="interactable_bed" type="Node3D"]
+
+[node name="Bed" parent="." instance=ExtResource("1_vd4f3")]
+
+[node name="Area3D" type="Area3D" parent="." groups=["Interactable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8, 2, 3.85)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -1.2, 0.25)
+shape = SubResource("BoxShape3D_vd4f3")

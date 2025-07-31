@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b182yj53b7xdq"]
+
+[ext_resource type="Texture2D" uid="uid://c2c6lg68ppbhu" path="res://Assets/Wood.png" id="1_n1btf"]
+
+[resource]
+resource_name = "Wood"
+albedo_color = Color(0.245929, 0.0747791, 0.0168066, 1)
+albedo_texture = ExtResource("1_n1btf")
+roughness = 0.809091
+texture_filter = 2

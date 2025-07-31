@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cmum4fbwdf825"]
+
+[ext_resource type="Texture2D" uid="uid://c2c6lg68ppbhu" path="res://Assets/Wood.png" id="1_jkhsv"]
+
+[resource]
+resource_name = "Mirror"
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+blend_mode = 1
+albedo_color = Color(1, 1, 1, 0.305882)
+albedo_texture = ExtResource("1_jkhsv")
+metallic = 0.5
+metallic_specular = 1.0
+roughness = 0.0
+texture_filter = 2

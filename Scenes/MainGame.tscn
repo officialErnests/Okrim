@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bek4s7gdlkrg2"]
+[gd_scene load_steps=11 format=3 uid="uid://bek4s7gdlkrg2"]
 
 [ext_resource type="PackedScene" uid="uid://bjl5dw5ej0h23" path="res://Scenes/Bedroom.tscn" id="1_ybmw1"]
 [ext_resource type="PackedScene" uid="uid://dom8diow7mrbl" path="res://Scenes/kitchen.tscn" id="2_321ql"]
+[ext_resource type="PackedScene" uid="uid://m2eodmre3qq7" path="res://Assets/Animated/tp.tscn" id="2_d4f28"]
 [ext_resource type="PackedScene" uid="uid://b7d24dojvn7y" path="res://Scenes/Bathroom.tscn" id="3_d4f28"]
 [ext_resource type="PackedScene" uid="uid://bhd4nboo20npf" path="res://Scenes/living_room.tscn" id="4_iuea6"]
 [ext_resource type="Script" uid="uid://dqaoli6c3i0ec" path="res://Scenes/look.gd" id="5_321ql"]
@@ -19,8 +20,7 @@ sky_material = SubResource("ProceduralSkyMaterial_ybmw1")
 [sub_resource type="Environment" id="Environment_d4f28"]
 sky = SubResource("Sky_321ql")
 ambient_light_source = 2
-ambient_light_color = Color(0, 0, 1, 1)
-ambient_light_energy = 0.2
+ambient_light_energy = 16.0
 reflected_light_source = 1
 glow_bloom = 1.0
 fog_enabled = true
@@ -31,32 +31,70 @@ fog_density = 0.38
 fog_sky_affect = 0.0
 fog_depth_end = 3869.5
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_d4f28"]
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_d4f28")
 
-[node name="Bedroom" parent="." instance=ExtResource("1_ybmw1")]
-
-[node name="Kitchen" parent="." instance=ExtResource("2_321ql")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
-
-[node name="Bathroom" parent="." instance=ExtResource("3_d4f28")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 0)
-
-[node name="LivingRoom" parent="." instance=ExtResource("4_iuea6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.984808, -3.34702e-08, 0.173648, -0.0176869, 0.994799, 0.100308, -0.172745, -0.101855, 0.979686, 0, 2, 0)
-fov = 91.9
+fov = 60.0
 script = ExtResource("5_321ql")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
-transform = Transform3D(0.984808, -0.0176869, -0.172745, -2.98023e-08, 0.994799, -0.101855, 0.173648, 0.100308, 0.979686, 0.0353738, -1.9896, -0.200615)
-shadow_enabled = true
-omni_range = 10.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 spot_range = 10.0
+
+[node name="PlayerUtil" type="Node3D" parent="."]
+
+[node name="PointLight" type="OmniLight3D" parent="PlayerUtil"]
+transform = Transform3D(1, 7.45062e-09, 1.04308e-07, -7.45058e-09, 1, -3.8743e-07, -1.04308e-07, 3.8743e-07, 1, -0.18332, 0.915479, -0.104686)
+light_size = 1.0
+light_specular = 0.0
+shadow_enabled = true
+omni_range = 10.0
+
+[node name="Tp" parent="PlayerUtil" instance=ExtResource("2_d4f28")]
+visible = false
+
+[node name="Buildings" type="Node3D" parent="."]
+
+[node name="Bedroom" parent="Buildings" instance=ExtResource("1_ybmw1")]
+
+[node name="Kitchen" parent="Buildings" instance=ExtResource("2_321ql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+
+[node name="Bathroom" parent="Buildings" instance=ExtResource("3_d4f28")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 0)
+
+[node name="LivingRoom" parent="Buildings" instance=ExtResource("4_iuea6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
+
+[node name="Bedroom2" parent="Buildings" instance=ExtResource("1_ybmw1")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 10, 0, 0)
+
+[node name="Lighting" type="Node3D" parent="."]
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 7.45062e-09, 1.04308e-07, -7.45058e-09, 1, -3.8743e-07, -1.04308e-07, 3.8743e-07, 1, 9.95461, 2.31156, -0.104686)
+light_specular = 0.0
+shadow_enabled = true
+omni_range = 6.70467
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 7.45062e-09, 1.04308e-07, -7.45058e-09, 1, -3.8743e-07, -1.04308e-07, 3.8743e-07, 1, -0.0453854, 2.31156, -0.104686)
+light_specular = 0.0
+shadow_enabled = true
+omni_range = 6.70467
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("WorldBoundaryShape3D_d4f28")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 4, 0)
+shape = SubResource("WorldBoundaryShape3D_d4f28")

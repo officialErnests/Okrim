@@ -1,10 +1,12 @@
 extends Camera3D
 
-@onready var light = $OmniLight3D
+@onready var light = $"../PlayerUtil/PointLight"
+@onready var tp_indicator = $"../PlayerUtil/Tp"
 @onready var spot_light =$SpotLight3D
 var speed = 500
 const RAY_LENGTH = 1000
 var mouseDebounce = true
+var animation_switch = "End"
 func _process(delta: float) -> void:
 	var normilized_mouse = Vector2(0.5,0.5) - (get_viewport().get_mouse_position() / Vector2(get_viewport().get_visible_rect().size))
 	if normilized_mouse.x > 0:
@@ -14,7 +16,7 @@ func _process(delta: float) -> void:
 		normilized_mouse.x = normilized_mouse.x + 0.1
 		if normilized_mouse.x > 0: normilized_mouse.x = 0
 	rotation_degrees += Vector3(normilized_mouse.y * delta * speed,normilized_mouse.x * delta * speed,0)
-	rotation_degrees.x += -rotation_degrees.x * delta * 10
+	rotation_degrees.x += -rotation_degrees.x * delta * 5
 	
 	var space_state = get_world_3d().direct_space_state
 	var mousepos = get_viewport().get_mouse_position()
@@ -22,20 +24,44 @@ func _process(delta: float) -> void:
 	var origin = project_ray_origin(mousepos)
 	var end = origin + project_ray_normal(mousepos) * RAY_LENGTH
 	var query = PhysicsRayQueryParameters3D.create(origin, end)
+	query.hit_from_inside = false
+	query.hit_back_faces = false
 	query.collide_with_areas = true
-	print(origin,end)
 
 	var result = space_state.intersect_ray(query)
 
+	var ray_hit = false
+	if animation_switch == "End" and not tp_indicator.get_node("AnimatedSprite3D").is_playing():
+		animation_switch = "Start_End"
+		position = tp_indicator.position + Vector3(0,2,0)
 	if result:
-		light.global_position += (result.position - light.global_position)*delta
-		light.global_position.y = 2
+		light.global_position += ((result.position * 0.8 + position *0.2) - light.global_position)*delta
+		# light.global_position.y = 2
 		spot_light.look_at(result.position)
 
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		if mouseDebounce:
-			mouseDebounce = false
-			if result and result.position.y < 1:
-				position = result.position * Vector3(1,0,1) + Vector3(0,2,0)
+		if result.collider.is_in_group("Move_zone"):
+			if not(animation_switch == "End" and tp_indicator.get_node("AnimatedSprite3D").is_playing()):
+				ray_hit = true
+				tp_indicator.position = result.position
+				tp_indicator.visible = true
+				if not tp_indicator.get_node("AnimatedSprite3D").is_playing():
+					if animation_switch == "Start":
+						animation_switch = "Loop"
+						tp_indicator.get_node("AnimatedSprite3D").play("Loop")
+					else:
+						animation_switch = "Start"
+						tp_indicator.get_node("AnimatedSprite3D").play("Start")
+	if not ray_hit:
+		if not (animation_switch == "Start_end" or animation_switch == "End"):
+			animation_switch  = "Start_end"
+			tp_indicator.get_node("AnimatedSprite3D").play("Start_end")
+		if not tp_indicator.get_node("AnimatedSprite3D").is_playing():
+			tp_indicator.visible = false
+
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and mouseDebounce:
+		mouseDebounce = false
+		if result and animation_switch == "Loop":
+			animation_switch = "End"
+			tp_indicator.get_node("AnimatedSprite3D").play("End")
 	else:
 		mouseDebounce = true

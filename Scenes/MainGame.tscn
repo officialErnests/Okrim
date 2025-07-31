@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bek4s7gdlkrg2"]
+[gd_scene load_steps=9 format=3 uid="uid://bek4s7gdlkrg2"]
 
 [ext_resource type="PackedScene" uid="uid://bjl5dw5ej0h23" path="res://Scenes/Bedroom.tscn" id="1_ybmw1"]
 [ext_resource type="PackedScene" uid="uid://dom8diow7mrbl" path="res://Scenes/kitchen.tscn" id="2_321ql"]
 [ext_resource type="PackedScene" uid="uid://b7d24dojvn7y" path="res://Scenes/Bathroom.tscn" id="3_d4f28"]
 [ext_resource type="PackedScene" uid="uid://bhd4nboo20npf" path="res://Scenes/living_room.tscn" id="4_iuea6"]
+[ext_resource type="Script" uid="uid://dqaoli6c3i0ec" path="res://Scenes/look.gd" id="5_321ql"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ybmw1"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -38,18 +39,24 @@ environment = SubResource("Environment_d4f28")
 [node name="Bedroom" parent="." instance=ExtResource("1_ybmw1")]
 
 [node name="Kitchen" parent="." instance=ExtResource("2_321ql")]
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
 
 [node name="Bathroom" parent="." instance=ExtResource("3_d4f28")]
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 0)
 
 [node name="LivingRoom" parent="." instance=ExtResource("4_iuea6")]
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.984808, -3.34702e-08, 0.173648, -0.0176869, 0.994799, 0.100308, -0.172745, -0.101855, 0.979686, 0, 2, 0)
 fov = 91.9
+script = ExtResource("5_321ql")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
+transform = Transform3D(0.984808, -0.0176869, -0.172745, -2.98023e-08, 0.994799, -0.101855, 0.173648, 0.100308, 0.979686, 0.0353738, -1.9896, -0.200615)
 shadow_enabled = true
 omni_range = 10.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+spot_range = 10.0

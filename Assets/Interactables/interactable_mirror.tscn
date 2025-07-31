@@ -9,8 +9,10 @@ size = Vector3(0.3, 2, 3)
 
 [node name="Mirror" parent="." instance=ExtResource("1_7uevk")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Interactable"]]
+[node name="Area3D" type="Area3D" parent="." groups=["Interactable"]]
 
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85, 2, 0)
 shape = SubResource("BoxShape3D_ltkb5")
+
+[editable path="Mirror"]

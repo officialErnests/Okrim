@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjl5dw5ej0h23"]
+[gd_scene load_steps=10 format=3 uid="uid://bjl5dw5ej0h23"]
 
 [ext_resource type="PackedScene" uid="uid://dgwe5onfmyda" path="res://Assets/Interactables/interactable_bed.tscn" id="2_bnvew"]
 [ext_resource type="PackedScene" uid="uid://dxy8pvf0gw4c0" path="res://Assets/Floor.gltf" id="3_bnvew"]
 [ext_resource type="PackedScene" uid="uid://jaw2s1rx8yig" path="res://Assets/Interactables/interactable_shelf.tscn" id="4_3gbim"]
 [ext_resource type="PackedScene" uid="uid://dehdckufmhhjn" path="res://Assets/Interactables/interactable_mirror.tscn" id="5_3gbim"]
 [ext_resource type="PackedScene" uid="uid://evtyjkwhkiwt" path="res://Assets/Interactables/interactable_table.tscn" id="5_swbdu"]
+[ext_resource type="PackedScene" uid="uid://c8muhl2d7isuy" path="res://Assets/Interactables/interactions_door.tscn" id="6_swbdu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rgpmg"]
 size = Vector3(0.1, 4, 10)
@@ -54,3 +55,5 @@ shape = SubResource("BoxShape3D_3gbim")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, -0.25, 3.35)
 shape = SubResource("BoxShape3D_swbdu")
+
+[node name="interactions_Door" parent="." instance=ExtResource("6_swbdu")]

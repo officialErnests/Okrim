@@ -13,6 +13,8 @@ size = Vector3(2.1, 2.9, 1)
 
 [node name="Interactable_shelf" type="Node3D"]
 
+[node name="Shelfs" parent="." instance=ExtResource("1_wl5ss")]
+
 [node name="Area3D" type="Area3D" parent="." groups=["Interactable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19209e-07, 1.45, -4.3)
 
@@ -27,5 +29,3 @@ shape = SubResource("BoxShape3D_wntsu")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.95, 0.05, -0.2)
 shape = SubResource("BoxShape3D_w5luw")
-
-[node name="Shelfs" parent="." instance=ExtResource("1_wl5ss")]

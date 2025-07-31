@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8muhl2d7isuy"]
+
+[ext_resource type="PackedScene" uid="uid://ddee44wd3tfmr" path="res://Assets/Door.gltf" id="1_eopr4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eopr4"]
+size = Vector3(0.6, 3.4, 3.3)
+
+[node name="interactions_Door" type="Node3D"]
+
+[node name="Door" parent="." instance=ExtResource("1_eopr4")]
+
+[node name="Area3D" type="Area3D" parent="." groups=["Interactable"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.7, -0.0499999)
+shape = SubResource("BoxShape3D_eopr4")
+
+[editable path="Door"]

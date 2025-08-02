@@ -5,6 +5,7 @@ class Main:
 
 	var room_node : AnimatedSprite2D
 	var room_name = "Bed"
+	var room_mouse_debounce = true
 	#Uses insanity
 
 	var background_node : ColorRect
@@ -96,7 +97,7 @@ class Main:
 		update_diologue_popup()
 		update_animation()
 		update_diologue()
-		update_foreground()
+		update_room(cursor_position)
 		update_cursor(cursor_position)
 
 	func update_task(delta) -> void:
@@ -122,13 +123,16 @@ class Main:
 		animation_node.play(animation_current)
 
 	func update_animation() -> void:
-		if animation_node.animation == "Wake_Up_Loop" and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			diologue_current = "Wakeup"
-			animation_current = "Wake_Up"
-			task_current = "Wake_Up"
-			task_new = "Eat"
-			room_name = "Bed"
-			start_animation()
+		if animation_node.animation == "Wake_Up_Loop" and animation_node.is_playing():
+			cursor_state = "Point"
+			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+				cursor_state = "Grab"
+				diologue_current = "Wakeup"
+				animation_current = "Wake_Up"
+				task_current = "Wake_Up"
+				task_new = "Eat"
+				room_name = "Bed"
+				start_animation()
 		if not animation_node.is_playing() and animation_node.visible:
 			background_animation = false
 			animation_node.visible = false
@@ -144,19 +148,22 @@ class Main:
 		diologue_popup_node.play("Diologue_popup")
 	
 	func update_diologue_popup() -> void:
-		if diologue_popup_node.frame == 5 and not diologue_up:
-			diologue_up = true
-			diologue_popup_debounce = true
-			start_diologue(diologue_popup_start)
-		if diologue_popup_node.frame == 0 and diologue_popup_debounce:
-			diologue_popup_debounce = false
-			if diologue_popup_start:
-				start_animation()
-			else:
-				end_task()
+		if not diologue_popup_node.is_playing():
+			if diologue_popup_node.frame == 5 and not diologue_up:
+				diologue_up = true
+				diologue_popup_debounce = true
+				start_diologue(diologue_popup_start)
+			if diologue_popup_node.frame == 0 and diologue_popup_debounce:
+				diologue_popup_debounce = false
+				if diologue_popup_start:
+					start_animation()
+				else:
+					end_task()
 
 	func end_diologue_popup() -> void:
 		diologue_popup_node.play_backwards("Diologue_popup")
+		cursor_state = "Default"
+		diologue_up = false
 
 	func func_diologue_check(in_animation_position) -> bool:
 		var temp_animation_position = "Start" if in_animation_position else "End"
@@ -170,13 +177,15 @@ class Main:
 		diologue_node.region_rect = Rect2(temp_dioologue_offset.x * 640, temp_dioologue_offset.y * 40, 640, 80 + temp_dioologue_offset.z * 80)
 	
 	func update_diologue() -> void:
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and diologue_up:
-			if diologue_mouse_debounce: return
-			diologue_mouse_debounce = true
-			end_diologue_popup()
-			diologue_node.visible = false
-		else:
-			diologue_mouse_debounce = false
+		if diologue_up:
+			cursor_state = "Point"
+			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+				if diologue_mouse_debounce: return
+				diologue_mouse_debounce = true
+				end_diologue_popup()
+				diologue_node.visible = false
+			else:
+				diologue_mouse_debounce = false
 	
 	func end_task() -> void:
 		task_done = true
@@ -189,10 +198,45 @@ class Main:
 		else:
 			background_node.color += (Color(0,0,0) - background_node.color) * delta
 
-	func update_foreground() -> void:
+	func update_room(cursor_position) -> void:
 		var temp_insanity_check = "Normal" if insanity <= 1 else "Insane"
 		if room_node.animation != temp_insanity_check + "_" + room_name:
 			room_node.play(temp_insanity_check + "_" + room_name)
+		if not diologue_up and not background_animation:
+			if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+				room_mouse_debounce = true
+			if cursor_position.x < 200:
+				cursor_state = "Arrow_l"
+				if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and room_mouse_debounce:
+					cursor_state = "Arrow"
+					room_mouse_debounce = false
+					match room_name:
+						"Bed":
+							room_name = "Mirror"
+						"Door":
+							room_name = "Bed"
+						"Mirror":
+							room_name = "Shelf"
+						"Shelf":
+							room_name = "Door"
+			elif cursor_position.x > 440:
+				cursor_state = "Arrow_r"
+				if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and room_mouse_debounce:
+					cursor_state = "Arrow"
+					room_mouse_debounce = false
+					match room_name:
+						"Bed":
+							room_name = "Door"
+						"Door":
+							room_name = "Shelf"
+						"Mirror":
+							room_name = "Bed"
+						"Shelf":
+							room_name = "Mirror"
+			else:
+				cursor_state = "Default"
+
+
 	
 	func update_cursor(cursor_position) -> void:
 		cursor_node.position = cursor_position + Vector2(0,20)

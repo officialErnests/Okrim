@@ -1654,7 +1654,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Arrow",
-"speed": 12.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1668,7 +1668,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Arrow_Left",
-"speed": 12.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1682,7 +1682,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Arrow_Right",
-"speed": 12.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1696,7 +1696,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Point",
-"speed": 12.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1716,7 +1716,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Point_Grab",
-"speed": 12.0
+"speed": 20.0
 }]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_d4f28"]

@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 class Main:
-	var glitch_precentile = 0
 	var insanity = 0
 
 	var room_node : AnimatedSprite2D
@@ -9,7 +8,7 @@ class Main:
 	#Uses insanity
 
 	var background_node : ColorRect
-	var background_animation = false
+	var background_animation = true
 
 	var task_node : AnimatedSprite2D
 	var task_done = false
@@ -21,7 +20,8 @@ class Main:
 	#Uses insanity
 
 	var diologue_popup_node : AnimatedSprite2D
-	var diologue_popup_start = false
+	var diologue_popup_start = true
+	var diologue_popup_debounce = true
 
 	var diologue_node : Sprite2D
 	var diologue_current = "Wakeup"
@@ -68,10 +68,13 @@ class Main:
 	#uses insanity
 
 	var cursor_node : AnimatedSprite2D
+	var cursor_state_current = "Default"
+	var cursor_state = "Point"
 
 	func _init(in_nodes) -> void:
 		task_node = in_nodes["Task"]
 		room_node = in_nodes["Room"]
+		cursor_node = in_nodes["Cursor"]
 		diologue_node = in_nodes["Diologue"]
 		animation_node = in_nodes["Animation"]
 		background_node = in_nodes["Background"]
@@ -84,16 +87,22 @@ class Main:
 		diologue_node.visible = false
 
 		diologue_popup_node.frame = 0
-		start_diologue_popup()
 
-	func tick(delta) -> void:
+		start_animation()
+
+	func tick(delta, cursor_position) -> void:
 		update_task(delta)
+		update_background(delta)
 		update_diologue_popup()
 		update_animation()
+		update_diologue()
+		update_foreground()
+		update_cursor(cursor_position)
 
 	func update_task(delta) -> void:
 		if task_current == "":
 			task_node.position.x += (-640 - task_node.position.x) * delta * 2
+			return
 		if task_done:
 			if task_node.animation != task_current + "_Done":
 				task_node.play(task_current + "_Done")
@@ -109,6 +118,7 @@ class Main:
 			task_node.position.x += (160 - task_node.position.x) * delta * 2
 	
 	func start_animation() -> void:
+		background_animation = true
 		animation_node.play(animation_current)
 
 	func update_animation() -> void:
@@ -120,19 +130,33 @@ class Main:
 			room_name = "Bed"
 			start_animation()
 		if not animation_node.is_playing() and animation_node.visible:
+			background_animation = false
 			animation_node.visible = false
 			diologue_popup_start = false
-			task_done = true
 			start_diologue_popup()
 
 	func start_diologue_popup() -> void:
-		if not func_diologue_check(diologue_popup_start): return
+		if not func_diologue_check(diologue_popup_start):
+			if diologue_popup_start:
+				start_animation()
+			else:
+				end_task()
 		diologue_popup_node.play("Diologue_popup")
 	
 	func update_diologue_popup() -> void:
 		if diologue_popup_node.frame == 5 and not diologue_up:
 			diologue_up = true
+			diologue_popup_debounce = true
 			start_diologue(diologue_popup_start)
+		if diologue_popup_node.frame == 0 and diologue_popup_debounce:
+			diologue_popup_debounce = false
+			if diologue_popup_start:
+				start_animation()
+			else:
+				end_task()
+
+	func end_diologue_popup() -> void:
+		diologue_popup_node.play_backwards("Diologue_popup")
 
 	func func_diologue_check(in_animation_position) -> bool:
 		var temp_animation_position = "Start" if in_animation_position else "End"
@@ -146,11 +170,70 @@ class Main:
 		diologue_node.region_rect = Rect2(temp_dioologue_offset.x * 640, temp_dioologue_offset.y * 40, 640, 80 + temp_dioologue_offset.z * 80)
 	
 	func update_diologue() -> void:
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and diologue_up:
 			if diologue_mouse_debounce: return
 			diologue_mouse_debounce = true
+			end_diologue_popup()
+			diologue_node.visible = false
 		else:
 			diologue_mouse_debounce = false
+	
+	func end_task() -> void:
+		task_done = true
+		animation_node.visible = false
+		diologue_popup_start = false
+	
+	func update_background(delta) -> void:
+		if background_animation:
+			background_node.color += (Color(1,1,1) - background_node.color) * delta
+		else:
+			background_node.color += (Color(0,0,0) - background_node.color) * delta
+
+	func update_foreground() -> void:
+		var temp_insanity_check = "Normal" if insanity <= 1 else "Insane"
+		if room_node.animation != temp_insanity_check + "_" + room_name:
+			room_node.play(temp_insanity_check + "_" + room_name)
+	
+	func update_cursor(cursor_position) -> void:
+		cursor_node.position = cursor_position + Vector2(0,20)
+		if cursor_state_current == cursor_state: return
+		if not cursor_node.is_playing():
+			match cursor_state_current:
+				"Default":
+					match cursor_state:
+						"Point":
+							cursor_node.play("Point")
+							cursor_state_current = "Point"
+						"Arrow", "Arrow_l", "Arrow_r":
+							cursor_node.play("Arrow")
+							cursor_state_current = "Arrow"
+				"Point":
+					if cursor_state == "Grab":
+						cursor_node.play("Point_Grab")
+						cursor_state_current = "Grab"
+					else:
+						cursor_node.play_backwards("Point")
+						cursor_state_current = "Default"
+				"Grab":
+						cursor_node.play_backwards("Point_Grab")
+						cursor_state_current = "Point"
+				"Arrow":
+					match cursor_state:
+						"Default","Point","Grab":
+							cursor_node.play_backwards("Arrow")
+							cursor_state_current = "Default"
+						"Arrow_l":
+							cursor_node.play("Arrow_Left")
+							cursor_state_current = "Arrow_l"
+						"Arrow_r":
+							cursor_node.play("Arrow_Right")
+							cursor_state_current = "Arrow_r"
+				"Arrow_l":
+					cursor_node.play_backwards("Arrow_Left")
+					cursor_state_current = "Arrow"
+				"Arrow_r":
+					cursor_node.play_backwards("Arrow_Right")
+					cursor_state_current = "Arrow"
 
 
 var main_class
@@ -158,11 +241,20 @@ func _ready() -> void:
 	main_class = Main.new({
 		"Task" : $Tasks,
 		"Room" : $Room,
+		"Cursor" : $Pointy,
 		"Diologue" : $Diologue,
 		"Animation" : $Animations,
 		"Background" : $Background,
 		"Diologue_popup" : $Diologue_PopUp
 	})
 
+#debugs mouse
+func debug():
+	while true:
+		await get_tree().create_timer(1).timeout
+		var temp_random = ["Default","Point","Grab","Arrow", "Arrow_l", "Arrow_r"].pick_random()
+		print(temp_random)
+		main_class.cursor_state = temp_random
+
 func _process(delta: float) -> void:
-	main_class.tick(delta)
+	main_class.tick(delta, get_viewport().get_mouse_position())

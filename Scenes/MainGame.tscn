@@ -1654,7 +1654,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Arrow",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1668,7 +1668,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Arrow_Left",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1682,7 +1682,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Arrow_Right",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1696,7 +1696,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Point",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1716,12 +1716,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Point_Grab",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"new_animation",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_d4f28"]
@@ -1791,10 +1786,12 @@ texture = ExtResource("7_yc6xl")
 region_enabled = true
 region_rect = Rect2(1280, 0, 640, 160)
 
-[node name="cursosr" type="AnimatedSprite2D" parent="Camera3D/CanvasLayer"]
+[node name="Pointy" type="AnimatedSprite2D" parent="Camera3D/CanvasLayer"]
+z_index = 5
 texture_filter = 1
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_gnwe2")
-animation = &"Arrow_Right"
+animation = &"Arrow"
 
 [node name="PlayerUtil" type="Node3D" parent="."]
 

@@ -34,7 +34,51 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "materials": {
-"Mirror": {
+"@MATERIAL:10": {
+"use_external/enabled": true,
+"use_external/path": "uid://cmum4fbwdf825"
+},
+"@MATERIAL:11": {
+"use_external/enabled": true,
+"use_external/path": "uid://cmum4fbwdf825"
+},
+"@MATERIAL:12": {
+"use_external/enabled": true,
+"use_external/path": "uid://cmum4fbwdf825"
+},
+"@MATERIAL:3": {
+"use_external/enabled": true,
+"use_external/path": "uid://cmum4fbwdf825"
+},
+"@MATERIAL:4": {
+"use_external/enabled": true,
+"use_external/path": "uid://cmum4fbwdf825"
+},
+"@MATERIAL:5": {
+"use_external/enabled": true,
+"use_external/path": "uid://cmum4fbwdf825"
+},
+"@MATERIAL:6": {
+"use_external/enabled": true,
+"use_external/path": "uid://cmum4fbwdf825"
+},
+"@MATERIAL:7": {
+"use_external/enabled": true,
+"use_external/path": "uid://cmum4fbwdf825"
+},
+"@MATERIAL:8": {
+"use_external/enabled": true,
+"use_external/path": "uid://cmum4fbwdf825"
+},
+"@MATERIAL:9": {
+"use_external/enabled": true,
+"use_external/path": "uid://cmum4fbwdf825"
+},
+"Black": {
+"use_external/enabled": true,
+"use_external/path": "uid://d2xe3yl473us6"
+},
+"Cloth": {
 "use_external/enabled": true,
 "use_external/path": "uid://cmum4fbwdf825"
 },

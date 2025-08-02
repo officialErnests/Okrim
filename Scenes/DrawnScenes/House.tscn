@@ -1,0 +1,278 @@
+[gd_scene load_steps=28 format=3 uid="uid://duhji37bri1h6"]
+
+[ext_resource type="Texture2D" uid="uid://cl07ts2qxsyr2" path="res://Assets/Images/Rooms_insanity.png" id="1_7s2a3"]
+[ext_resource type="Texture2D" uid="uid://cdilbo2s3l566" path="res://Assets/Images/Rooms.png" id="2_v0hwk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3rcg"]
+atlas = ExtResource("1_7s2a3")
+region = Rect2(0, 3600, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eaysr"]
+atlas = ExtResource("1_7s2a3")
+region = Rect2(0, 5760, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nwui"]
+atlas = ExtResource("1_7s2a3")
+region = Rect2(0, 6480, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gouht"]
+atlas = ExtResource("1_7s2a3")
+region = Rect2(0, 4320, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0k32o"]
+atlas = ExtResource("1_7s2a3")
+region = Rect2(0, 1440, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ds3qo"]
+atlas = ExtResource("1_7s2a3")
+region = Rect2(0, 5040, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi1i5"]
+atlas = ExtResource("1_7s2a3")
+region = Rect2(0, 8640, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpghn"]
+atlas = ExtResource("1_7s2a3")
+region = Rect2(0, 7200, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgdw6"]
+atlas = ExtResource("1_7s2a3")
+region = Rect2(0, 7920, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmjow"]
+atlas = ExtResource("1_7s2a3")
+region = Rect2(0, 2160, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23p1k"]
+atlas = ExtResource("1_7s2a3")
+region = Rect2(0, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ds1c"]
+atlas = ExtResource("1_7s2a3")
+region = Rect2(0, 2880, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0okp"]
+atlas = ExtResource("2_v0hwk")
+region = Rect2(0, 5760, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1cy0"]
+atlas = ExtResource("2_v0hwk")
+region = Rect2(0, 3600, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ik3b7"]
+atlas = ExtResource("2_v0hwk")
+region = Rect2(0, 6480, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l4fu"]
+atlas = ExtResource("2_v0hwk")
+region = Rect2(0, 1440, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4210"]
+atlas = ExtResource("2_v0hwk")
+region = Rect2(0, 4320, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qa7b"]
+atlas = ExtResource("2_v0hwk")
+region = Rect2(0, 5040, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8767m"]
+atlas = ExtResource("2_v0hwk")
+region = Rect2(0, 8640, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rimlt"]
+atlas = ExtResource("2_v0hwk")
+region = Rect2(0, 7200, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i05g2"]
+atlas = ExtResource("2_v0hwk")
+region = Rect2(0, 7920, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f26tr"]
+atlas = ExtResource("2_v0hwk")
+region = Rect2(0, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22p8e"]
+atlas = ExtResource("2_v0hwk")
+region = Rect2(0, 2160, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vk1u"]
+atlas = ExtResource("2_v0hwk")
+region = Rect2(0, 2880, 1280, 720)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sgdw6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3rcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eaysr")
+}],
+"loop": true,
+"name": &"Insanity_Bed",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nwui")
+}],
+"loop": true,
+"name": &"Insanity_Bed_Glitch",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gouht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0k32o")
+}],
+"loop": true,
+"name": &"Insanity_Door",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ds3qo")
+}],
+"loop": true,
+"name": &"Insanity_Door_Glitch",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fi1i5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpghn")
+}],
+"loop": true,
+"name": &"Insanity_Mirror",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgdw6")
+}],
+"loop": true,
+"name": &"Insanity_Mirror_Glitch",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmjow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23p1k")
+}],
+"loop": true,
+"name": &"Insanity_Shelf",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ds1c")
+}],
+"loop": true,
+"name": &"Insanity_Shelf_Glitch",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0okp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1cy0")
+}],
+"loop": true,
+"name": &"Normal_Bed",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ik3b7")
+}],
+"loop": false,
+"name": &"Normal_Bed_Glitch",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l4fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4210")
+}],
+"loop": true,
+"name": &"Normal_Door",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qa7b")
+}],
+"loop": true,
+"name": &"Normal_Door_Glitch",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8767m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rimlt")
+}],
+"loop": true,
+"name": &"Normal_Mirror",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i05g2")
+}],
+"loop": true,
+"name": &"Normal_Mirror_Glitch",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f26tr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22p8e")
+}],
+"loop": true,
+"name": &"Normal_Shelf",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vk1u")
+}],
+"loop": true,
+"name": &"Normal_Shelf_Glitch",
+"speed": 1.0
+}]
+
+[node name="House" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+position = Vector2(320, 180)
+scale = Vector2(0.5, 0.492)
+sprite_frames = SubResource("SpriteFrames_sgdw6")
+animation = &"Normal_Bed"
+frame_progress = 0.482975
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

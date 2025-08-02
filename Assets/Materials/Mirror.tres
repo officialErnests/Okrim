@@ -4,13 +4,8 @@
 
 [resource]
 resource_name = "Mirror"
-transparency = 3
-alpha_hash_scale = 1.0
-alpha_antialiasing_mode = 0
 blend_mode = 1
-albedo_color = Color(1, 1, 1, 0.305882)
+shading_mode = 0
+albedo_color = Color(0.370364, 0.370364, 0.370364, 1)
 albedo_texture = ExtResource("1_jkhsv")
-metallic = 0.5
-metallic_specular = 1.0
-roughness = 0.0
 texture_filter = 2

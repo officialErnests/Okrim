@@ -1,8 +1,9 @@
 shader_type spatial;
 
+render_mode cull_front;
 void vertex() {
 	// Called for every vertex the material is visible on.
-	VERTEX = VERTEX + vec3(cos(VERTEX.x + VERTEX.z + TIME*3.0)/10.0,cos(VERTEX.y + VERTEX.z + TIME*1.0)/10.0,sin(VERTEX.x + VERTEX.y + TIME*2.0)/10.0);
+	VERTEX = VERTEX + vec3(cos(VERTEX.x + VERTEX.z + TIME*3.0)/20.0,cos(VERTEX.y + VERTEX.z + TIME*1.0)/20.0,sin(VERTEX.x + VERTEX.y + TIME*2.0)/20.0);
 }
 
 void fragment() {

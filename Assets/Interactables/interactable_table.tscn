@@ -1,6 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://evtyjkwhkiwt"]
+[gd_scene load_steps=5 format=3 uid="uid://evtyjkwhkiwt"]
 
 [ext_resource type="PackedScene" uid="uid://b2v5h623xhb3o" path="res://Assets/Table.gltf" id="1_s7av4"]
+[ext_resource type="Shader" uid="uid://cgx3vu17y0cok" path="res://Scenes/Shaders/soup.gdshader" id="2_n6ryg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_td1yk"]
+render_priority = 0
+shader = ExtResource("2_n6ryg")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n6ryg"]
 size = Vector3(1.9, 0.9, 1.9)
@@ -9,8 +14,13 @@ size = Vector3(1.9, 0.9, 1.9)
 
 [node name="Table" parent="." instance=ExtResource("1_s7av4")]
 
+[node name="Cube_010" parent="Table" index="2"]
+material_override = SubResource("ShaderMaterial_td1yk")
+
 [node name="Area3D" type="Area3D" parent="." groups=["Interactable"]]
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.55, 0.45, 3.55)
 shape = SubResource("BoxShape3D_n6ryg")
+
+[editable path="Table"]

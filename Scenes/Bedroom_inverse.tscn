@@ -1,0 +1,52 @@
+[gd_scene load_steps=13 format=3 uid="uid://wre05o01tqj2"]
+
+[ext_resource type="PackedScene" uid="uid://dxy8pvf0gw4c0" path="res://Assets/Floor.gltf" id="1_ko6xj"]
+[ext_resource type="PackedScene" uid="uid://dgwe5onfmyda" path="res://Assets/Interactables/interactable_bed.tscn" id="2_bx53m"]
+[ext_resource type="PackedScene" uid="uid://dehdckufmhhjn" path="res://Assets/Interactables/interactable_mirror.tscn" id="3_w02al"]
+[ext_resource type="PackedScene" uid="uid://evtyjkwhkiwt" path="res://Assets/Interactables/interactable_table.tscn" id="4_226uy"]
+[ext_resource type="PackedScene" uid="uid://c8muhl2d7isuy" path="res://Assets/Interactables/interactions_door.tscn" id="5_0x4yw"]
+[ext_resource type="PackedScene" uid="uid://jaw2s1rx8yig" path="res://Assets/Interactables/interactable_nightshelf.tscn" id="6_81qqq"]
+[ext_resource type="PackedScene" uid="uid://cd3fgyrn1agss" path="res://Assets/Interactables/interactable_shelf.tscn" id="7_62jce"]
+[ext_resource type="PackedScene" uid="uid://biaccbtrqj4xb" path="res://Assets/key.gltf" id="8_bx53m"]
+[ext_resource type="PackedScene" uid="uid://bw6o4mri1eijf" path="res://Assets/books2.gltf" id="9_0x4yw"]
+[ext_resource type="PackedScene" uid="uid://b76opmwtt25ke" path="res://Assets/books3.gltf" id="10_81qqq"]
+[ext_resource type="PackedScene" uid="uid://bsund6d3ldptg" path="res://Assets/books4.gltf" id="11_62jce"]
+[ext_resource type="PackedScene" uid="uid://dhbss7mn716j" path="res://Assets/Empty_pile.gltf" id="12_81qqq"]
+
+[node name="Bedroom" type="Node3D"]
+
+[node name="Floor" parent="." instance=ExtResource("1_ko6xj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Interactable_mirror" parent="." instance=ExtResource("3_w02al")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+visible = false
+
+[node name="interactable_table" parent="." instance=ExtResource("4_226uy")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="interactions_Door" parent="." instance=ExtResource("5_0x4yw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="interactable_nightshelf" parent="." instance=ExtResource("6_81qqq")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 5)
+
+[node name="interactable_shelf" parent="." instance=ExtResource("7_62jce")]
+
+[node name="interactable_bed" parent="." instance=ExtResource("2_bx53m")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 8)
+
+[node name="key" parent="." instance=ExtResource("8_bx53m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+
+[node name="books2" parent="." instance=ExtResource("9_0x4yw")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -9)
+
+[node name="books3" parent="." instance=ExtResource("10_81qqq")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -9)
+
+[node name="books4" parent="." instance=ExtResource("11_62jce")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -9)
+
+[node name="Empty_pile" parent="." instance=ExtResource("12_81qqq")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 3)

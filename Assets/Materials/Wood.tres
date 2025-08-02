@@ -4,6 +4,7 @@
 
 [resource]
 resource_name = "Wood"
+cull_mode = 2
 albedo_color = Color(0.648377, 0.359374, 0.295558, 1)
 albedo_texture = ExtResource("1_yrff4")
 roughness = 0.809091

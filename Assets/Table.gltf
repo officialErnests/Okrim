@@ -8,7 +8,9 @@
 		{
 			"name":"Scene",
 			"nodes":[
-				0
+				0,
+				1,
+				2
 			]
 		}
 	],
@@ -21,6 +23,24 @@
 				0.5,
 				4
 			]
+		},
+		{
+			"mesh":1,
+			"name":"Cylinder",
+			"translation":[
+				-3.233067035675049,
+				0.9999997615814209,
+				3.2522873878479004
+			]
+		},
+		{
+			"mesh":2,
+			"name":"Cube.010",
+			"translation":[
+				-3.233067274093628,
+				0.899999737739563,
+				3.2522876262664795
+			]
 		}
 	],
 	"materials":[
@@ -28,9 +48,40 @@
 			"doubleSided":true,
 			"name":"Wood",
 			"pbrMetallicRoughness":{
-				"baseColorTexture":{
-					"index":0
-				},
+				"baseColorFactor":[
+					0.800000011920929,
+					0.800000011920929,
+					0.800000011920929,
+					1
+				],
+				"metallicFactor":0,
+				"roughnessFactor":0.8090909123420715
+			}
+		},
+		{
+			"doubleSided":true,
+			"name":"Matrice",
+			"pbrMetallicRoughness":{
+				"baseColorFactor":[
+					0.800000011920929,
+					0.800000011920929,
+					0.800000011920929,
+					1
+				],
+				"metallicFactor":0,
+				"roughnessFactor":0.8090909123420715
+			}
+		},
+		{
+			"doubleSided":true,
+			"name":"Lether",
+			"pbrMetallicRoughness":{
+				"baseColorFactor":[
+					0.800000011920929,
+					0.800000011920929,
+					0.800000011920929,
+					1
+				],
 				"metallicFactor":0,
 				"roughnessFactor":0.8090909123420715
 			}
@@ -50,19 +101,34 @@
 					"material":0
 				}
 			]
-		}
-	],
-	"textures":[
+		},
 		{
-			"sampler":0,
-			"source":0
-		}
-	],
-	"images":[
+			"name":"Cylinder",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":4,
+						"NORMAL":5,
+						"TEXCOORD_0":6
+					},
+					"indices":7,
+					"material":1
+				}
+			]
+		},
 		{
-			"mimeType":"image/png",
-			"name":"Wood",
-			"uri":"Wood.png"
+			"name":"Cube.005",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":8,
+						"NORMAL":9,
+						"TEXCOORD_0":10
+					},
+					"indices":11,
+					"material":2
+				}
+			]
 		}
 	],
 	"accessors":[
@@ -99,6 +165,74 @@
 			"componentType":5123,
 			"count":144,
 			"type":"SCALAR"
+		},
+		{
+			"bufferView":4,
+			"componentType":5126,
+			"count":72,
+			"max":[
+				0.3464101552963257,
+				0.10000000149011612,
+				0.4000000059604645
+			],
+			"min":[
+				-0.3464101552963257,
+				-0.10000000894069672,
+				-0.4000000059604645
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":5,
+			"componentType":5126,
+			"count":72,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":6,
+			"componentType":5126,
+			"count":72,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":7,
+			"componentType":5123,
+			"count":132,
+			"type":"SCALAR"
+		},
+		{
+			"bufferView":8,
+			"componentType":5126,
+			"count":57,
+			"max":[
+				0.30641043186187744,
+				0.2000000774860382,
+				0.3538118600845337
+			],
+			"min":[
+				-0.30640995502471924,
+				0.019999995827674866,
+				-0.3538123369216919
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":9,
+			"componentType":5126,
+			"count":57,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":10,
+			"componentType":5126,
+			"count":57,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":11,
+			"componentType":5123,
+			"count":150,
+			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
@@ -125,17 +259,59 @@
 			"byteLength":288,
 			"byteOffset":2752,
 			"target":34963
-		}
-	],
-	"samplers":[
+		},
 		{
-			"magFilter":9728,
-			"minFilter":9984
+			"buffer":0,
+			"byteLength":864,
+			"byteOffset":3040,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":864,
+			"byteOffset":3904,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":576,
+			"byteOffset":4768,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":264,
+			"byteOffset":5344,
+			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":684,
+			"byteOffset":5608,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":684,
+			"byteOffset":6292,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":456,
+			"byteOffset":6976,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":300,
+			"byteOffset":7432,
+			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":3040,
+			"byteLength":7732,
 			"uri":"Table.bin"
 		}
 	]

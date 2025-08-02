@@ -34,6 +34,14 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "materials": {
+"Cloth": {
+"use_external/enabled": true,
+"use_external/path": "uid://ptmurn8wvab7"
+},
+"Lether": {
+"use_external/enabled": true,
+"use_external/path": "uid://djeibmse4o3bo"
+},
 "Wood": {
 "use_external/enabled": true,
 "use_external/path": "uid://gevcobvn4oiu"

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://jaw2s1rx8yig"]
+
+[ext_resource type="PackedScene" uid="uid://bwkdv381fmdel" path="res://Assets/NightShelf.gltf" id="1_fstd2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ldxkv"]
+size = Vector3(1.1, 1.1, 1.1)
+
+[node name="interactable_nightshelf" type="Node3D"]
+
+[node name="NightShelf" parent="." instance=ExtResource("1_fstd2")]
+
+[node name="Area3D" type="Area3D" parent="." groups=["Interactable"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0.55, 2.65)
+shape = SubResource("BoxShape3D_ldxkv")

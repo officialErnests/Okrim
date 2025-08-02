@@ -1,11 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjl5dw5ej0h23"]
+[gd_scene load_steps=17 format=3 uid="uid://bjl5dw5ej0h23"]
 
 [ext_resource type="PackedScene" uid="uid://dgwe5onfmyda" path="res://Assets/Interactables/interactable_bed.tscn" id="2_bnvew"]
 [ext_resource type="PackedScene" uid="uid://dxy8pvf0gw4c0" path="res://Assets/Floor.gltf" id="3_bnvew"]
-[ext_resource type="PackedScene" uid="uid://jaw2s1rx8yig" path="res://Assets/Interactables/interactable_shelf.tscn" id="4_3gbim"]
 [ext_resource type="PackedScene" uid="uid://dehdckufmhhjn" path="res://Assets/Interactables/interactable_mirror.tscn" id="5_3gbim"]
 [ext_resource type="PackedScene" uid="uid://evtyjkwhkiwt" path="res://Assets/Interactables/interactable_table.tscn" id="5_swbdu"]
+[ext_resource type="PackedScene" uid="uid://jaw2s1rx8yig" path="res://Assets/Interactables/interactable_nightshelf.tscn" id="6_cs4vd"]
 [ext_resource type="PackedScene" uid="uid://c8muhl2d7isuy" path="res://Assets/Interactables/interactions_door.tscn" id="6_swbdu"]
+[ext_resource type="PackedScene" uid="uid://d16g2puos00bh" path="res://Assets/Interactables/interactable_key.tscn" id="8_rgpmg"]
+[ext_resource type="PackedScene" uid="uid://cod2p4w2wehei" path="res://Assets/Interactables/interactable_books_1.tscn" id="9_iwh4a"]
+[ext_resource type="PackedScene" uid="uid://osu5ko3p4eiv" path="res://Assets/Interactables/interactable_books_2.tscn" id="10_rsf82"]
+[ext_resource type="PackedScene" uid="uid://b33qlctd3d8ij" path="res://Assets/Interactables/interactable_books_3.tscn" id="11_qt6gd"]
+[ext_resource type="PackedScene" uid="uid://fe56nadtpcdr" path="res://Assets/Shelfs.gltf" id="12_rsf82"]
+[ext_resource type="PackedScene" uid="uid://0wokto1s0xsr" path="res://Assets/Interactables/interactable_books_4.tscn" id="12_t6n27"]
+[ext_resource type="PackedScene" uid="uid://dhbss7mn716j" path="res://Assets/Empty_pile.gltf" id="13_qt6gd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rgpmg"]
 size = Vector3(0.1, 4, 10)
@@ -42,8 +49,6 @@ shape = SubResource("BoxShape3D_rgpmg")
 
 [node name="Interactable_mirror" parent="." instance=ExtResource("5_3gbim")]
 
-[node name="Interactable_shelf" parent="." instance=ExtResource("4_3gbim")]
-
 [node name="interactable_table" parent="." instance=ExtResource("5_swbdu")]
 
 [node name="Area3D2" type="Area3D" parent="." groups=["Move_zone"]]
@@ -57,3 +62,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, -0.25, 3.35)
 shape = SubResource("BoxShape3D_swbdu")
 
 [node name="interactions_Door" parent="." instance=ExtResource("6_swbdu")]
+
+[node name="interactable_nightshelf" parent="." instance=ExtResource("6_cs4vd")]
+
+[node name="interactable_key" parent="." instance=ExtResource("8_rgpmg")]
+
+[node name="interactable_books" parent="." instance=ExtResource("9_iwh4a")]
+
+[node name="interactable_books_2" parent="." instance=ExtResource("10_rsf82")]
+
+[node name="interactable_books_3" parent="." instance=ExtResource("11_qt6gd")]
+
+[node name="interactable_books_4" parent="." instance=ExtResource("12_t6n27")]
+
+[node name="Shelfs" parent="." instance=ExtResource("12_rsf82")]
+
+[node name="Empty_pile" parent="." instance=ExtResource("13_qt6gd")]

@@ -9,9 +9,9 @@ data = PackedVector3Array(-0.0176, 0.0109, -0.3328, 0, 0.02, -0.4414, 0, 0.0063,
 
 [node name="key" parent="." instance=ExtResource("1_dd1y5")]
 
-[node name="Area3D" type="Area3D" parent="." groups=["Interactable"]]
+[node name="Key" type="Area3D" parent="." groups=["Interactable"]]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Key"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.59156, 0.02, -3.11667)
 shape = SubResource("ConcavePolygonShape3D_7dmbb")
 

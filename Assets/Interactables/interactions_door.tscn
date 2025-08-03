@@ -7,12 +7,12 @@ size = Vector3(0.6, 3.4, 3.3)
 
 [node name="interactions_Door" type="Node3D"]
 
-[node name="Door" parent="." instance=ExtResource("1_eopr4")]
+[node name="Door_mesh" parent="." instance=ExtResource("1_eopr4")]
 
-[node name="Area3D" type="Area3D" parent="." groups=["Interactable"]]
+[node name="Door" type="Area3D" parent="." groups=["Interactable"]]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.7, -0.0499999)
 shape = SubResource("BoxShape3D_eopr4")
 
-[editable path="Door"]
+[editable path="Door_mesh"]

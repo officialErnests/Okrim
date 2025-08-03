@@ -7,12 +7,12 @@ size = Vector3(0.3, 2, 3)
 
 [node name="Interactable_mirror" type="Node3D"]
 
-[node name="Mirror" parent="." instance=ExtResource("1_7uevk")]
+[node name="Mirror_mesh" parent="." instance=ExtResource("1_7uevk")]
 
-[node name="Area3D" type="Area3D" parent="." groups=["Interactable"]]
+[node name="Mirror" type="Area3D" parent="." groups=["Interactable"]]
 
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="Area3D"]
+[node name="Mirror" type="CollisionShape3D" parent="Mirror"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85, 2, 0)
 shape = SubResource("BoxShape3D_ltkb5")
 
-[editable path="Mirror"]
+[editable path="Mirror_mesh"]

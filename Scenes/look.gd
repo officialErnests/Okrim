@@ -10,13 +10,18 @@ var mouseDebounce = true
 var animation_switch = "End"
 var last_selection : Area3D
 var last_selected = false
+var can_look = false
+@onready var game_script = $CanvasLayer
+func _ready() -> void:
+	tp_indicator.position = position - Vector3(0,2,0)
 func _process(delta: float) -> void:
+	if not can_look: return
 	var normilized_mouse = Vector2(0.5,0.5) - (get_viewport().get_mouse_position() / Vector2(get_viewport().get_visible_rect().size))
 	if normilized_mouse.x > 0:
-		normilized_mouse.x = normilized_mouse.x - 0.1 
+		normilized_mouse.x = normilized_mouse.x - 0.2
 		if normilized_mouse.x < 0: normilized_mouse.x = 0
 	else:
-		normilized_mouse.x = normilized_mouse.x + 0.1
+		normilized_mouse.x = normilized_mouse.x + 0.2
 		if normilized_mouse.x > 0: normilized_mouse.x = 0
 	rotation_degrees += Vector3(normilized_mouse.y * delta * speed,normilized_mouse.x * delta * speed,0)
 	rotation_degrees.x += -rotation_degrees.x * delta * 5
@@ -45,6 +50,7 @@ func _process(delta: float) -> void:
 
 		if not(animation_switch == "End" and tp_indicator.get_node("AnimatedSprite3D").is_playing()):
 			if result.collider.is_in_group("Move_zone"):
+				game_script.movement = true
 				ray_hit = true
 				tp_indicator.position = result.position
 				tp_indicator.visible = true
@@ -55,6 +61,8 @@ func _process(delta: float) -> void:
 					else:
 						animation_switch = "Start"
 						tp_indicator.get_node("AnimatedSprite3D").play("Start")
+			else:
+				game_script.movement = false
 			if result.collider.is_in_group("Interactable"):
 				last_selected = true
 				if result.collider != last_selection:
@@ -62,9 +70,11 @@ func _process(delta: float) -> void:
 						for selected_mesh_iter in last_selection.get_parent().get_child(0).get_children():
 							selected_mesh_iter.material_overlay = null
 					last_selection = result.collider
+					game_script.pointed_at = result.collider.name
 					for selected_mesh_iter in last_selection.get_parent().get_child(0).get_children():
 						selected_mesh_iter.material_overlay = selected_material
 	if not last_selected and last_selection:
+		game_script.pointed_at = ""
 		for selected_mesh_iter in last_selection.get_parent().get_child(0).get_children():
 			selected_mesh_iter.material_overlay = null
 		last_selection = null

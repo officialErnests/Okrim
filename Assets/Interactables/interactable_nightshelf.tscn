@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://jaw2s1rx8yig"]
+[gd_scene load_steps=4 format=3 uid="uid://jaw2s1rx8yig"]
 
 [ext_resource type="PackedScene" uid="uid://bwkdv381fmdel" path="res://Assets/NightShelf.gltf" id="1_fstd2"]
+[ext_resource type="Material" uid="uid://brciynfncfrn3" path="res://Scenes/Shaders/selected.tres" id="2_0f120"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ldxkv"]
 size = Vector3(1.1, 1.1, 1.1)
@@ -9,8 +10,16 @@ size = Vector3(1.1, 1.1, 1.1)
 
 [node name="NightShelf" parent="." instance=ExtResource("1_fstd2")]
 
-[node name="Area3D" type="Area3D" parent="." groups=["Interactable"]]
+[node name="Cube_003" parent="NightShelf" index="0"]
+material_overlay = ExtResource("2_0f120")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="Cylinder_001" parent="NightShelf" index="1"]
+material_overlay = ExtResource("2_0f120")
+
+[node name="Pills" type="Area3D" parent="." groups=["Interactable"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pills"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0.55, 2.65)
 shape = SubResource("BoxShape3D_ldxkv")
+
+[editable path="NightShelf"]

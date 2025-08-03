@@ -30,37 +30,37 @@ data = PackedVector3Array(-0.2223, -0.5718, 0.6138, -0.1795, 0.1448, -0.2, -0.17
 
 [node name="Books1" parent="." instance=ExtResource("1_51pnb")]
 
-[node name="Area3D" type="Area3D" parent="." groups=["Interactable"]]
+[node name="Books_1" type="Area3D" parent="." groups=["Interactable"]]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Books_1"]
 transform = Transform3D(0.0759925, 0.997108, -1.56059e-07, 0.997108, -0.0759926, 1.68405e-07, 1.56059e-07, -1.68405e-07, -1, -4.19654, 0.18989, -4.26779)
 shape = SubResource("ConcavePolygonShape3D_8w8b8")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Books_1"]
 transform = Transform3D(-0.112283, 0.993676, 0, -0.993676, -0.112283, 0, 0, 0, 1, -4.18133, 0.351827, -4.69897)
 shape = SubResource("ConcavePolygonShape3D_iodcl")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Books_1"]
 transform = Transform3D(0.242123, 0.970246, -2.55169e-07, 0.970246, -0.242123, 3.26672e-07, 2.55169e-07, -3.26672e-07, -1, -4.10107, 0.7225, -4.26779)
 shape = SubResource("ConcavePolygonShape3D_dmjmk")
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Books_1"]
 transform = Transform3D(-0.277324, 0.960777, 0, -0.960777, -0.277324, 0, 0, 0, 1, -4.11571, 0.895988, -4.69897)
 shape = SubResource("ConcavePolygonShape3D_ixe5x")
 
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Books_1"]
 transform = Transform3D(0.241329, 0.962853, 0.121137, -0.959353, 0.255523, -0.119791, -0.146294, -0.0873044, 0.985381, -2.9339, 0.282147, -3.09882)
 shape = SubResource("ConcavePolygonShape3D_uvacd")
 
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Books_1"]
 transform = Transform3D(-0.0649848, -0.852673, 0.518388, 0.997108, -0.0759927, 2.98023e-08, 0.0393937, 0.516889, 0.855145, -2.88728, 0.162731, -3.42173)
 shape = SubResource("ConcavePolygonShape3D_tf5cx")
 
-[node name="CollisionShape3D7" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Books_1"]
 transform = Transform3D(-0.147272, -0.815396, -0.559858, -0.959353, 0.255523, -0.119791, 0.240733, 0.51946, -0.819884, -4.138, 0.282147, -3.0937)
 shape = SubResource("ConcavePolygonShape3D_xo18j")
 
-[node name="CollisionShape3D8" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="Books_1"]
 transform = Transform3D(0.0396575, 0.52035, -0.853032, 0.997108, -0.0759927, 5.96046e-08, -0.0648241, -0.850565, -0.521859, -4.03122, 0.162731, -2.78541)
 shape = SubResource("ConcavePolygonShape3D_sgpyp")
 

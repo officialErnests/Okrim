@@ -3,6 +3,12 @@ extends CanvasLayer
 var pointed_at = ""
 var movement = false
 @onready var parent_script = $".."
+@onready var music_player_norm = $"../Fun-8-bit"
+@onready var music_players_not = $"../Not-so-fun-8-bit"
+@onready var music_players_insane = $"../OhGod"
+@onready var sfx_click = $"../Click"
+@onready var sfx_crumble = $"../Crumble"
+@onready var sfx_open = $"../Open"
 
 class Main:
 	var insanity = 0
@@ -15,6 +21,13 @@ class Main:
 	var room_name = "Bed"
 	var room_state = 0
 	#Uses insanity
+
+	var music_player_norm
+	var music_players_not
+	var music_players_insane
+	var sfx_click
+	var sfx_crumble
+	var sfx_open
 
 	var background_node : ColorRect
 	var background_animation = true
@@ -97,7 +110,7 @@ class Main:
 	var cursor_state = "Point"
 	var cursor_debounce = true
 
-	func _init(in_nodes) -> void:
+	func _init(in_nodes, in_parent_node) -> void:
 		task_node = in_nodes["Task"]
 		room_node = in_nodes["Room"]
 		cursor_node = in_nodes["Cursor"]
@@ -116,6 +129,14 @@ class Main:
 		animation_current = "Wake_Up_Loop"
 		room_state = 2
 		start_animation()
+
+		music_player_norm = in_parent_node.music_player_norm
+		music_players_not = in_parent_node.music_players_not
+		music_players_insane = in_parent_node.music_players_insane
+
+		sfx_click = in_parent_node.sfx_click
+		sfx_crumble = in_parent_node.sfx_crumble
+		sfx_open = in_parent_node.sfx_open
 
 	func tick(delta, cursor_position, in_class_holder) -> void:
 		update_task(delta)
@@ -188,6 +209,8 @@ class Main:
 			insanity = 0
 			start_animation()
 			room_node.visible = true
+			music_players_insane.stop()
+			music_player_norm.play()
 			return
 		task_done = true
 		room_state = 6
@@ -216,10 +239,16 @@ class Main:
 				if days == 2:
 					insanity += 1
 				if days == 3:
+					if not music_players_not.playing:
+						music_player_norm.stop()
+						music_players_not.play()
 					insanity += 1
 				middle_event()
 		if animation_node.animation == "Drink_Insanity" and animation_node.is_playing():
 			insanity = 3
+			if not music_players_insane.playing:
+				music_players_not.stop()
+				music_players_insane.play()
 			room_node.visible = false
 		else:
 			if animation_node.animation != "Open_Insanity":
@@ -238,6 +267,7 @@ class Main:
 			room_state = 1
 		else:
 			room_state = 5
+		sfx_open.play()
 		diologue_popup_node.play("Diologue_popup")
 	
 	func update_diologue_popup() -> void:
@@ -255,6 +285,7 @@ class Main:
 			diologue_popup_debounce = true
 
 	func end_diologue_popup() -> void:
+		sfx_crumble.play()
 		diologue_popup_node.play_backwards("Diologue_popup")
 		cursor_state = "Default"
 
@@ -347,6 +378,7 @@ class Main:
 							cursor_debounce = false
 							if days == 1:
 								start_event("Mirror", "Idk", "Mirror")
+								music_player_norm.stop()
 							else: 
 								start_event("Mirror", "Drink", "Mirror")
 					elif task_current == "Drink" and room_name == "Bed":
@@ -370,6 +402,7 @@ class Main:
 						cursor_state = "Point"
 						if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and cursor_debounce:
 							cursor_debounce = false
+							music_player_norm.play()
 							start_event("", "Sleep", "")
 					else:
 						cursor_state = "Default"
@@ -475,9 +508,11 @@ class Main:
 							cursor_state_current = "Default"
 						"Arrow_l":
 							cursor_node.play("Arrow_Left")
+							sfx_click.play()
 							cursor_state_current = "Arrow_l"
 						"Arrow_r":
 							cursor_node.play("Arrow_Right")
+							sfx_click.play()
 							cursor_state_current = "Arrow_r"
 				"Arrow_l":
 					cursor_node.play_backwards("Arrow_Left")
@@ -497,7 +532,7 @@ func _ready() -> void:
 		"Animation" : $Animations,
 		"Background" : $Background,
 		"Diologue_popup" : $Diologue_PopUp
-	})
+	},self)
 
 #debugs mouse
 func debug():

@@ -11,10 +11,14 @@ config_version=5
 [application]
 
 config/name="Okrim"
-run/main_scene="uid://bek4s7gdlkrg2"
+run/main_scene="uid://bcpeiy1krx3x7"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/image="uid://ds2kkt34n58xq"
 config/icon="res://icon.svg"
+
+[autoload]
+
+MainData="*res://Scenes/Globals/main_data.gd"
 
 [display]
 

@@ -1,10 +1,165 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcpeiy1krx3x7"]
+[gd_scene load_steps=30 format=3 uid="uid://bcpeiy1krx3x7"]
 
 [ext_resource type="Texture2D" uid="uid://ds2kkt34n58xq" path="res://Game_Logo.png" id="1_1ehe0"]
 [ext_resource type="Shader" uid="uid://bs2jmico0hpi5" path="res://Scenes/Shaders/ghost edges.gdshader" id="1_48xlc"]
+[ext_resource type="Script" uid="uid://cbercqotcm5p4" path="res://Scenes/main_menu.gd" id="1_trj04"]
 [ext_resource type="Texture2D" uid="uid://c6v8tgledggvk" path="res://Game_Art.png" id="2_1ehe0"]
+[ext_resource type="Texture2D" uid="uid://d4jt6nrhqykrr" path="res://Assets/Images/Interactables.png" id="2_16hvj"]
 [ext_resource type="Theme" uid="uid://m1dopghrmfc" path="res://Assets/Ui/main_theme.tres" id="4_ce3w2"]
 [ext_resource type="AudioStream" uid="uid://bstvftypxw2ym" path="res://Assets/Music/Oh_soBeutiful_fradile.ogg" id="4_n45e2"]
+[ext_resource type="AudioStream" uid="uid://ci1jdr3qdndt6" path="res://Assets/Sfx/Click.ogg" id="6_16hvj"]
+[ext_resource type="AudioStream" uid="uid://b65ga472appnv" path="res://Assets/Sfx/Crumble.ogg" id="7_vr1f0"]
+[ext_resource type="AudioStream" uid="uid://ctr142s0a622l" path="res://Assets/Sfx/Open.ogg" id="8_t1dhk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_im1vy"]
+atlas = ExtResource("2_16hvj")
+region = Rect2(560, 840, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yy0n7"]
+atlas = ExtResource("2_16hvj")
+region = Rect2(560, 760, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wdc3"]
+atlas = ExtResource("2_16hvj")
+region = Rect2(480, 760, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w42fa"]
+atlas = ExtResource("2_16hvj")
+region = Rect2(400, 1000, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upseh"]
+atlas = ExtResource("2_16hvj")
+region = Rect2(400, 1000, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_si6xw"]
+atlas = ExtResource("2_16hvj")
+region = Rect2(320, 1000, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1r7st"]
+atlas = ExtResource("2_16hvj")
+region = Rect2(240, 1000, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6tew"]
+atlas = ExtResource("2_16hvj")
+region = Rect2(400, 1000, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ijh3"]
+atlas = ExtResource("2_16hvj")
+region = Rect2(480, 1000, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fto8l"]
+atlas = ExtResource("2_16hvj")
+region = Rect2(560, 1000, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gskau"]
+atlas = ExtResource("2_16hvj")
+region = Rect2(560, 840, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ny3r6"]
+atlas = ExtResource("2_16hvj")
+region = Rect2(480, 840, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1lyq"]
+atlas = ExtResource("2_16hvj")
+region = Rect2(400, 840, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76w8d"]
+atlas = ExtResource("2_16hvj")
+region = Rect2(400, 840, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fugij"]
+atlas = ExtResource("2_16hvj")
+region = Rect2(400, 760, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0g6lv"]
+atlas = ExtResource("2_16hvj")
+region = Rect2(320, 760, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eeqno"]
+atlas = ExtResource("2_16hvj")
+region = Rect2(320, 840, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vr1f0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_im1vy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yy0n7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wdc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w42fa")
+}],
+"loop": false,
+"name": &"Arrow",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upseh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_si6xw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1r7st")
+}],
+"loop": false,
+"name": &"Arrow_Left",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6tew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ijh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fto8l")
+}],
+"loop": false,
+"name": &"Arrow_Right",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gskau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ny3r6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1lyq")
+}],
+"loop": false,
+"name": &"Point",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76w8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fugij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0g6lv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eeqno")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Point_Grab",
+"speed": 20.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ce3w2"]
 shader = ExtResource("1_48xlc")
@@ -17,6 +172,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_trj04")
+
+[node name="Pointy" type="AnimatedSprite2D" parent="."]
+z_index = 5
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_vr1f0")
+animation = &"Point"
+frame = 2
+frame_progress = 1.0
 
 [node name="GameLogo" type="Sprite2D" parent="."]
 position = Vector2(320, 180)
@@ -30,9 +195,8 @@ scale = Vector2(0.492687, 0.17192)
 texture = ExtResource("2_1ehe0")
 centered = false
 
-[node name="ColorRect2" type="ColorRect" parent="."]
-visible = false
-z_index = 2
+[node name="bg_color" type="ColorRect" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,6 +209,22 @@ color = Color(0, 0, 0, 0.392157)
 stream = ExtResource("4_n45e2")
 volume_db = -10.0
 autoplay = true
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_16hvj")
+volume_db = -30.0
+pitch_scale = 10.0
+parameters/looping = false
+
+[node name="Crumble" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_vr1f0")
+volume_db = -30.0
+pitch_scale = 2.0
+
+[node name="Open" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_t1dhk")
+volume_db = -30.0
+pitch_scale = 2.0
 
 [node name="Main" type="VBoxContainer" parent="."]
 z_index = 2
@@ -180,3 +360,19 @@ layout_mode = 2
 theme = ExtResource("4_ce3w2")
 text = "Back
 "
+
+[node name="transition_color" type="ColorRect" parent="."]
+z_index = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[connection signal="button_up" from="Main/New_game" to="." method="_on_new_game_button_up"]
+[connection signal="button_up" from="Main/Options" to="." method="_on_options_button_up"]
+[connection signal="button_up" from="Main/Phase select" to="." method="_on_phase_select_button_up"]
+[connection signal="button_up" from="Main/Exit" to="." method="_on_exit_button_up"]

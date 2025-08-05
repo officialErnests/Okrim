@@ -11,6 +11,7 @@ var animation_switch = "End"
 var last_selection : Area3D
 var last_selected = false
 var can_look = false
+var menu_opened = false
 @onready var game_script = $CanvasLayer
 func _ready() -> void:
 	tp_indicator.position = position - Vector3(0,2,0)

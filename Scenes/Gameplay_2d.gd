@@ -2,6 +2,10 @@ extends CanvasLayer
 
 var pointed_at = ""
 var movement = false
+var mouse_pos_last = Vector2(0,0)
+var cursor_pos = Vector2(320, 180)
+var last_vec = Vector2(0,0)
+var vec_mul = 1
 @onready var parent_script = $".."
 @onready var music_player_norm = $"../Fun-8-bit"
 @onready var music_players_not = $"../Not-so-fun-8-bit"
@@ -124,11 +128,6 @@ class Main:
 		diologue_node.visible = false
 
 		diologue_popup_node.frame = 0
-		
-		diologue_current = "Wakeup"
-		animation_current = "Wake_Up_Loop"
-		room_state = 2
-		start_animation()
 
 		music_player_norm = in_parent_node.music_player_norm
 		music_players_not = in_parent_node.music_players_not
@@ -138,7 +137,48 @@ class Main:
 		sfx_crumble = in_parent_node.sfx_crumble
 		sfx_open = in_parent_node.sfx_open
 
-	func tick(delta, cursor_position, in_class_holder) -> void:
+		match MainData.selected_level:
+			0:
+				insanity = 0
+				days = 0
+				diologue_current = "Wakeup"
+				animation_current = "Wake_Up_Loop"
+				room_state = 2
+				start_animation()
+			1:
+				insanity = 0
+				days = 1
+				diologue_current = "Wakeup"
+				animation_current = "Wake_Up_Loop"
+				room_state = 2
+				start_animation()
+			2:
+				insanity = 0
+				days = 2
+				diologue_current = "Wakeup"
+				animation_current = "Wake_Up_Loop"
+				room_state = 2
+				start_animation()
+			3:
+				insanity = 1
+				days = 3
+				diologue_current = "Wakeup"
+				animation_current = "Wake_Up_Loop"
+				room_state = 2
+				start_animation()
+			4:
+				insanity = 2
+				days = 3
+				diologue_current = "Drink"
+				animation_current = "Drink"
+				room_state = 2
+				task_current = "Idk"
+				task_new = "Idk"
+				start_animation()
+
+	func tick(delta, cursor_position, in_class_holder, in_menu) -> void:
+		if in_menu:
+			cursor_debounce = false
 		update_task(delta)
 		update_background(delta)
 		update_diologue_popup()
@@ -148,7 +188,7 @@ class Main:
 		update_cursor(cursor_position)
 		# print(days, insanity)
 		# print(animation_current)
-		if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if not Input.is_action_just_pressed("select"):
 			cursor_debounce = true
 		
 	func update_task(delta) -> void:
@@ -229,7 +269,7 @@ class Main:
 	func update_animation() -> void:
 		if animation_node.animation == "Wake_Up_Loop" and animation_node.is_playing():
 			cursor_state = "Point"
-			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and cursor_debounce:
+			if Input.is_action_just_pressed("select") and cursor_debounce:
 				cursor_debounce = false
 				cursor_state = "Grab"
 				task_done = false
@@ -248,11 +288,12 @@ class Main:
 			insanity = 3
 			if not music_players_insane.playing:
 				music_players_not.stop()
+				music_player_norm.stop()
 				music_players_insane.play()
 			room_node.visible = false
 		else:
 			if animation_node.animation != "Open_Insanity":
-				if animation_node.is_playing() and animation_node.visible and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and cursor_debounce:
+				if animation_node.is_playing() and animation_node.visible and Input.is_action_just_pressed("select") and cursor_debounce:
 					cursor_debounce = false
 					background_animation = false
 					animation_node.visible = false
@@ -302,7 +343,7 @@ class Main:
 	func update_diologue() -> void:
 		if (room_state == 1 or room_state == 5) and diologue_node.visible:
 			cursor_state = "Point"
-			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and cursor_debounce:
+			if Input.is_action_just_pressed("select") and cursor_debounce:
 				cursor_debounce = false
 				end_diologue_popup()
 				cursor_state = "Grab"
@@ -328,9 +369,9 @@ class Main:
 			room_node.play(temp_insanity_check + "_" + room_name + "_Glitch")
 		if insanity < 3:
 			if room_state == 6 and not task_done:
-				if cursor_position.x < 200:
+				if cursor_position.x < 150:
 					cursor_state = "Arrow_l"
-					if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and cursor_debounce:
+					if Input.is_action_just_pressed("select") and cursor_debounce:
 						cursor_state = "Arrow"
 						cursor_debounce = false
 						match room_name:
@@ -342,9 +383,9 @@ class Main:
 								room_name = "Shelf"
 							"Shelf":
 								room_name = "Door"
-				elif cursor_position.x > 440:
+				elif cursor_position.x > 490:
 					cursor_state = "Arrow_r"
-					if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and cursor_debounce:
+					if Input.is_action_just_pressed("select") and cursor_debounce:
 						cursor_state = "Arrow"
 						cursor_debounce = false
 						match room_name:
@@ -359,22 +400,22 @@ class Main:
 				else:
 					if task_current == "Eat" and room_name == "Door":
 						cursor_state = "Point"
-						if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and cursor_debounce:
+						if Input.is_action_just_pressed("select") and cursor_debounce:
 							cursor_debounce = false
 							start_event("Eat", "Door", "Eat")
 					elif task_current == "Door" and room_name == "Door":
 						cursor_state = "Point"
-						if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and cursor_debounce:
+						if Input.is_action_just_pressed("select") and cursor_debounce:
 							cursor_debounce = false
 							start_event("Door", "Read", "Door")
 					elif task_current == "Read" and room_name == "Shelf":
 						cursor_state = "Point"
-						if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and cursor_debounce:
+						if Input.is_action_just_pressed("select") and cursor_debounce:
 							cursor_debounce = false
 							start_event("Book", "Yourself", "Book")
 					elif task_current == "Yourself" and room_name == "Mirror":
 						cursor_state = "Point"
-						if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and cursor_debounce:
+						if Input.is_action_just_pressed("select") and cursor_debounce:
 							cursor_debounce = false
 							if days == 1:
 								start_event("Mirror", "Idk", "Mirror")
@@ -383,24 +424,36 @@ class Main:
 								start_event("Mirror", "Drink", "Mirror")
 					elif task_current == "Drink" and room_name == "Bed":
 						cursor_state = "Point"
-						if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and cursor_debounce:
+						if Input.is_action_just_pressed("select") and cursor_debounce:
 							cursor_debounce = false
 							if days == 2:
 								start_event("Drink", "Sleep", "")
 							else:
 								if days == 3:
 									start_event("Drink", "Idk", "Drink")
+									if MainData.player_save == 3:
+										MainData.player_save = 4
+										MainData.settings_changed.emit()
 								else:
 									start_event("Drink", "Sleep", "Drink")
 					elif task_current == "Sleep" and room_name == "Bed":
 						cursor_state = "Point"
-						if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and cursor_debounce:
+						if Input.is_action_just_pressed("select") and cursor_debounce:
 							cursor_debounce = false
 							days += 1
+							if days == 1 and MainData.player_save == 0:
+								MainData.player_save = 1
+								MainData.settings_changed.emit()
+							if days == 2 and MainData.player_save == 1:
+								MainData.player_save = 2
+								MainData.settings_changed.emit()
+							if days == 3 and MainData.player_save == 2:
+								MainData.player_save = 3
+								MainData.settings_changed.emit()
 							start_event("Wakeup", "", "Wake_Up_Loop")
 					elif task_current == "Idk":
 						cursor_state = "Point"
-						if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and cursor_debounce:
+						if Input.is_action_just_pressed("select") and cursor_debounce:
 							cursor_debounce = false
 							music_player_norm.play()
 							start_event("", "Sleep", "")
@@ -422,7 +475,7 @@ class Main:
 					else:
 						cursor_state = "Point"
 						if insanity == 3:
-							if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and cursor_debounce:
+							if Input.is_action_just_pressed("select") and cursor_debounce:
 								cursor_debounce = false
 								match class_holder.pointed_at:
 									"Books_0", "Books_1":
@@ -438,7 +491,7 @@ class Main:
 									"Mirror":
 										start_event("Mirror", "Idk", "")
 						elif insanity == 4:
-							if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and cursor_debounce:
+							if Input.is_action_just_pressed("select") and cursor_debounce:
 								cursor_debounce = false
 								match class_holder.pointed_at:
 									"Books_0":
@@ -456,7 +509,7 @@ class Main:
 									"Mirror":
 										start_event("Mirror", "Idk", "")
 						elif insanity == 5:
-							if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and cursor_debounce:
+							if Input.is_action_just_pressed("select") and cursor_debounce:
 								cursor_debounce = false
 								match class_holder.pointed_at:
 									"Books_0", "Books_1":
@@ -539,8 +592,23 @@ func debug():
 	while true:
 		await get_tree().create_timer(1).timeout
 		var temp_random = ["Default","Point","Grab","Arrow", "Arrow_l", "Arrow_r"].pick_random()
-		print(temp_random)
+		# print(temp_random)
 		main_class.cursor_state = temp_random
 
+
 func _process(delta: float) -> void:
-	main_class.tick(delta, get_viewport().get_mouse_position(), self)
+	if get_viewport().get_mouse_position() == mouse_pos_last:
+		var in1 = Input.get_axis("ui_left", "ui_right")
+		var in2 = Input.get_axis("ui_up", "ui_down")
+		if (in1 > 0 and last_vec.x > 0) or (in1 < 0 and last_vec.x < 0) or (in2 > 0 and last_vec.y > 0) or (in2 < 0 and last_vec.y < 0):
+			vec_mul += delta
+		else:
+			vec_mul = 1
+		last_vec = Vector2(in1, in2)
+		cursor_pos += Vector2 (in1, in2) * delta * 200 * vec_mul
+		cursor_pos.x = clamp(cursor_pos.x, 0, 640)
+		cursor_pos.y = clamp(cursor_pos.y, 0, 360)
+	else:
+		cursor_pos = get_viewport().get_mouse_position()
+	main_class.tick(delta, cursor_pos, self, get_parent().menu_opened)
+	mouse_pos_last = get_viewport().get_mouse_position()

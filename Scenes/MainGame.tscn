@@ -1,4 +1,4 @@
-[gd_scene load_steps=213 format=3 uid="uid://bek4s7gdlkrg2"]
+[gd_scene load_steps=215 format=3 uid="uid://bek4s7gdlkrg2"]
 
 [ext_resource type="PackedScene" uid="uid://bjl5dw5ej0h23" path="res://Scenes/Bedroom.tscn" id="1_ybmw1"]
 [ext_resource type="PackedScene" uid="uid://dom8diow7mrbl" path="res://Scenes/kitchen.tscn" id="2_321ql"]
@@ -21,6 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://d4jt6nrhqykrr" path="res://Assets/Images/Interactables.png" id="6_r5sjn"]
 [ext_resource type="PackedScene" uid="uid://wre05o01tqj2" path="res://Scenes/Bedroom_inverse.tscn" id="7_iuea6"]
 [ext_resource type="Texture2D" uid="uid://bho37ajspxgj1" path="res://Assets/Images/Diologue.png" id="7_yc6xl"]
+[ext_resource type="Script" uid="uid://p83bj8g8ti01" path="res://Scenes/menu.gd" id="16_7p2u3"]
+[ext_resource type="Theme" uid="uid://m1dopghrmfc" path="res://Assets/Ui/main_theme.tres" id="17_him8o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ybmw1"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -1769,6 +1771,7 @@ script = ExtResource("3_glaac")
 [node name="OhGod" type="AudioStreamPlayer" parent="Camera3D"]
 stream = ExtResource("4_k6vqf")
 script = ExtResource("3_glaac")
+volume_boost = 0.2
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -1790,7 +1793,7 @@ texture_filter = 1
 position = Vector2(320, 180)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_k6vqf")
-animation = &"Insanity_Door_Glitch"
+animation = &"Normal_Bed"
 
 [node name="Tasks" type="AnimatedSprite2D" parent="Camera3D/CanvasLayer"]
 z_index = 2
@@ -1798,16 +1801,14 @@ texture_filter = 1
 position = Vector2(160, 50)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ev6kq")
-animation = &"Read"
+animation = &"Wake_Up"
 
 [node name="Animations" type="AnimatedSprite2D" parent="Camera3D/CanvasLayer"]
 z_index = 3
 texture_filter = 1
 position = Vector2(320, 180)
 sprite_frames = SubResource("SpriteFrames_jn25s")
-animation = &"Door_Insanity"
-frame = 14
-frame_progress = 1.0
+animation = &"Wake_Up_Loop"
 
 [node name="Diologue_PopUp" type="AnimatedSprite2D" parent="Camera3D/CanvasLayer"]
 z_index = 3
@@ -1815,8 +1816,6 @@ texture_filter = 1
 position = Vector2(320, 180)
 sprite_frames = SubResource("SpriteFrames_cmrup")
 animation = &"Diologue_popup"
-frame = 5
-frame_progress = 1.0
 
 [node name="Diologue" type="Sprite2D" parent="Camera3D/CanvasLayer"]
 z_index = 4
@@ -1825,17 +1824,54 @@ position = Vector2(320, 280)
 scale = Vector2(0.69, 0.69)
 texture = ExtResource("7_yc6xl")
 region_enabled = true
-region_rect = Rect2(-0.068, 1440, 582.978, 199.65)
 
 [node name="Pointy" type="AnimatedSprite2D" parent="Camera3D/CanvasLayer"]
 z_index = 5
 texture_filter = 1
+position = Vector2(320, 180)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_gnwe2")
 animation = &"Arrow"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Camera3D/CanvasLayer"]
 sprite_frames = SubResource("SpriteFrames_ylpyt")
+
+[node name="Menu" type="CanvasLayer" parent="Camera3D"]
+layer = 2
+script = ExtResource("16_7p2u3")
+
+[node name="ColorRect" type="ColorRect" parent="Camera3D/Menu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.784314)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera3D/Menu/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.5
+offset_top = -47.0
+offset_right = 83.5
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Continue" type="Button" parent="Camera3D/Menu/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("17_him8o")
+text = "Continue
+"
+
+[node name="Menu" type="Button" parent="Camera3D/Menu/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("17_him8o")
+text = "Menu"
 
 [node name="PlayerUtil" type="Node3D" parent="."]
 
@@ -1890,3 +1926,6 @@ shape = SubResource("WorldBoundaryShape3D_d4f28")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 4, 0)
 shape = SubResource("WorldBoundaryShape3D_d4f28")
+
+[connection signal="button_up" from="Camera3D/Menu/ColorRect/VBoxContainer/Continue" to="Camera3D/Menu" method="_on_continue_button_up"]
+[connection signal="button_up" from="Camera3D/Menu/ColorRect/VBoxContainer/Menu" to="Camera3D/Menu" method="_on_menu_button_up"]

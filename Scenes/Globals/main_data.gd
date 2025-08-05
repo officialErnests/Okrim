@@ -5,6 +5,7 @@ var music_volume = 0.5
 
 # 0 - no save, 1- day 1, and so on 4 - room
 var player_save = 0
+var selected_level = 0
 
 signal settings_changed()
 
@@ -14,6 +15,7 @@ func _ready() -> void:
 	settings_changed.connect(settings_changed_func)
 
 func settings_changed_func() -> void:
+	print(player_save)
 	save_game([sfx_volume,music_volume,player_save])
 	
 

@@ -178,6 +178,7 @@ script = ExtResource("1_trj04")
 [node name="Pointy" type="AnimatedSprite2D" parent="."]
 z_index = 5
 texture_filter = 1
+position = Vector2(-122, -41)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_vr1f0")
 animation = &"Point"
@@ -209,7 +210,6 @@ color = Color(0, 0, 0, 0.392157)
 [node name="OhSoBeutifulFradile" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_n45e2")
 volume_db = -10.0
-autoplay = true
 script = ExtResource("7_t1dhk")
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
@@ -350,24 +350,23 @@ alignment = 1
 [node name="Day1" type="Button" parent="Phases"]
 layout_mode = 2
 theme = ExtResource("4_ce3w2")
-text = "Day - 1
+text = "??? - ? - ???
 "
 
 [node name="Day2" type="Button" parent="Phases"]
 layout_mode = 2
 theme = ExtResource("4_ce3w2")
-text = "Day - 2"
+text = "??? - ? - ???"
 
 [node name="Day3" type="Button" parent="Phases"]
 layout_mode = 2
 theme = ExtResource("4_ce3w2")
-text = "Day - 3"
+text = "??? - ? - ???"
 
 [node name="Room" type="Button" parent="Phases"]
 layout_mode = 2
 theme = ExtResource("4_ce3w2")
-text = "Room - 4
-"
+text = "??? - ? - ???"
 
 [node name="Back" type="Button" parent="Phases"]
 layout_mode = 2
@@ -393,4 +392,8 @@ color = Color(1, 1, 1, 0)
 [connection signal="button_up" from="Options/Back" to="." method="_on_back_button_up"]
 [connection signal="value_changed" from="Options/Music/Music_slider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="Options/Sfx/Sfx_slider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="button_up" from="Phases/Day1" to="." method="_on_day_1_button_up"]
+[connection signal="button_up" from="Phases/Day2" to="." method="_on_day_2_button_up"]
+[connection signal="button_up" from="Phases/Day3" to="." method="_on_day_3_button_up"]
+[connection signal="button_up" from="Phases/Room" to="." method="_on_room_button_up"]
 [connection signal="button_up" from="Phases/Back" to="." method="_on_back_button_up"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bcpeiy1krx3x7"]
+[gd_scene load_steps=31 format=3 uid="uid://bcpeiy1krx3x7"]
 
 [ext_resource type="Texture2D" uid="uid://ds2kkt34n58xq" path="res://Game_Logo.png" id="1_1ehe0"]
 [ext_resource type="Shader" uid="uid://bs2jmico0hpi5" path="res://Scenes/Shaders/ghost edges.gdshader" id="1_48xlc"]
@@ -8,6 +8,7 @@
 [ext_resource type="Theme" uid="uid://m1dopghrmfc" path="res://Assets/Ui/main_theme.tres" id="4_ce3w2"]
 [ext_resource type="AudioStream" uid="uid://bstvftypxw2ym" path="res://Assets/Music/Oh_soBeutiful_fradile.ogg" id="4_n45e2"]
 [ext_resource type="AudioStream" uid="uid://ci1jdr3qdndt6" path="res://Assets/Sfx/Click.ogg" id="6_16hvj"]
+[ext_resource type="Script" uid="uid://er3qpmhbglkq" path="res://Scenes/audio_controll.gd" id="7_t1dhk"]
 [ext_resource type="AudioStream" uid="uid://b65ga472appnv" path="res://Assets/Sfx/Crumble.ogg" id="7_vr1f0"]
 [ext_resource type="AudioStream" uid="uid://ctr142s0a622l" path="res://Assets/Sfx/Open.ogg" id="8_t1dhk"]
 
@@ -209,22 +210,29 @@ color = Color(0, 0, 0, 0.392157)
 stream = ExtResource("4_n45e2")
 volume_db = -10.0
 autoplay = true
+script = ExtResource("7_t1dhk")
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_16hvj")
 volume_db = -30.0
 pitch_scale = 10.0
 parameters/looping = false
+script = ExtResource("7_t1dhk")
+sfx = true
 
 [node name="Crumble" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_vr1f0")
 volume_db = -30.0
 pitch_scale = 2.0
+script = ExtResource("7_t1dhk")
+sfx = true
 
 [node name="Open" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_t1dhk")
 volume_db = -30.0
 pitch_scale = 2.0
+script = ExtResource("7_t1dhk")
+sfx = true
 
 [node name="Main" type="VBoxContainer" parent="."]
 z_index = 2
@@ -294,12 +302,15 @@ layout_mode = 2
 theme = ExtResource("4_ce3w2")
 text = "Music"
 
-[node name="HSlider" type="HSlider" parent="Options/Music"]
+[node name="Music_slider" type="HSlider" parent="Options/Music"]
 z_index = -1
 custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
 theme = ExtResource("4_ce3w2")
-step = 5.0
+max_value = 1.0
+step = 0.05
+tick_count = 5
+ticks_on_borders = true
 
 [node name="Sfx" type="HBoxContainer" parent="Options"]
 layout_mode = 2
@@ -309,12 +320,15 @@ layout_mode = 2
 theme = ExtResource("4_ce3w2")
 text = "Sfx___"
 
-[node name="HSlider" type="HSlider" parent="Options/Sfx"]
+[node name="Sfx_slider" type="HSlider" parent="Options/Sfx"]
 z_index = -1
 custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
 theme = ExtResource("4_ce3w2")
-step = 5.0
+max_value = 1.0
+step = 0.05
+tick_count = 5
+ticks_on_borders = true
 
 [node name="Phases" type="VBoxContainer" parent="."]
 visible = false
@@ -376,3 +390,7 @@ color = Color(1, 1, 1, 0)
 [connection signal="button_up" from="Main/Options" to="." method="_on_options_button_up"]
 [connection signal="button_up" from="Main/Phase select" to="." method="_on_phase_select_button_up"]
 [connection signal="button_up" from="Main/Exit" to="." method="_on_exit_button_up"]
+[connection signal="button_up" from="Options/Back" to="." method="_on_back_button_up"]
+[connection signal="value_changed" from="Options/Music/Music_slider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Options/Sfx/Sfx_slider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="button_up" from="Phases/Back" to="." method="_on_back_button_up"]

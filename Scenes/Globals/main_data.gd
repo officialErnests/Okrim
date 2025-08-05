@@ -1,17 +1,24 @@
 extends Node
 
-var sfx_volume = 50
-var music_volume = 10
+var sfx_volume = 0.5
+var music_volume = 0.5
 
 # 0 - no save, 1- day 1, and so on 4 - room
 var player_save = 0
 
+signal settings_changed()
+
 func _ready() -> void:
 	load_game()
 	save_game([sfx_volume,music_volume,player_save])
+	settings_changed.connect(settings_changed_func)
+
+func settings_changed_func() -> void:
+	save_game([sfx_volume,music_volume,player_save])
+	
 
 func save_game(save_data):
-	print("Saved to" + OS.get_data_dir())
+	# print("Saved to" + OS.get_data_dir())
 	var save_file = FileAccess.open("user://okrim_save.save", FileAccess.WRITE)
 	var json_string = JSON.stringify(save_data)
 	save_file.store_line(json_string)

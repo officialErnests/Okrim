@@ -43,12 +43,14 @@ atlas = ExtResource("1_21pf2")
 region = Rect2(420, 838, 52, 79)
 margin = Rect2(4.87, 31, 0, 0)
 
-[sub_resource type="Gradient" id="Gradient_p71od"]
-offsets = PackedFloat32Array(0, 0.510638, 1)
-colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1)
+[sub_resource type="Gradient" id="Gradient_21pf2"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_1o0nq"]
-gradient = SubResource("Gradient_p71od")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p71od"]
+gradient = SubResource("Gradient_21pf2")
+width = 2
+height = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qcb72"]
 bg_color = Color(1, 0, 0, 1)
@@ -101,7 +103,7 @@ Button/styles/pressed = SubResource("StyleBoxFlat_opfnp")
 HSlider/constants/grabber_offset = 12
 HSlider/icons/grabber = SubResource("AtlasTexture_p71od")
 HSlider/icons/grabber_highlight = SubResource("AtlasTexture_21pf2")
-HSlider/icons/tick = SubResource("GradientTexture1D_1o0nq")
+HSlider/icons/tick = SubResource("GradientTexture2D_p71od")
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_qcb72")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_7ousf")
 HSlider/styles/slider = SubResource("StyleBoxFlat_a81gu")

@@ -1,0 +1,116 @@
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://m1dopghrmfc"]
+
+[ext_resource type="Texture2D" uid="uid://d4jt6nrhqykrr" path="res://Assets/Images/Interactables.png" id="1_21pf2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n45e2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+skew = Vector2(-0.1, -0.1)
+border_width_top = 5
+border_width_right = 10
+border_width_bottom = 2
+border_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ce3w2"]
+bg_color = Color(1, 0, 0, 0)
+skew = Vector2(-0.05, -0.1)
+border_width_left = 15
+border_color = Color(0, 0, 1, 1)
+shadow_color = Color(1, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ehe0"]
+bg_color = Color(1, 0, 0, 0)
+skew = Vector2(0.2, 0.1)
+border_width_left = 10
+border_color = Color(0, 0, 1, 1)
+corner_detail = 1
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opfnp"]
+bg_color = Color(0, 0, 1, 1)
+skew = Vector2(2, 0.1)
+border_width_left = 55
+border_color = Color(1, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p71od"]
+atlas = ExtResource("1_21pf2")
+region = Rect2(323, 770, 75, 60)
+margin = Rect2(0, 26, 0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21pf2"]
+atlas = ExtResource("1_21pf2")
+region = Rect2(420, 838, 52, 79)
+margin = Rect2(4.87, 31, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_p71od"]
+offsets = PackedFloat32Array(0, 0.510638, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1o0nq"]
+gradient = SubResource("Gradient_p71od")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qcb72"]
+bg_color = Color(1, 0, 0, 1)
+skew = Vector2(0.35, 0.125)
+corner_detail = 1
+shadow_color = Color(0, 0, 1, 1)
+shadow_size = 1
+shadow_offset = Vector2(0.765, 2.14)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ousf"]
+bg_color = Color(1, 1, 1, 1)
+skew = Vector2(1, 0.2)
+border_width_left = 10
+border_color = Color(0, 0, 1, 1)
+shadow_color = Color(1, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a81gu"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 1, 1)
+skew = Vector2(-0.65, -0.1)
+corner_detail = 6
+shadow_color = Color(1, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(-3.335, -2.57)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p71od"]
+bg_color = Color(0, 0, 0, 1)
+skew = Vector2(-0.3, -0.1)
+border_width_left = 5
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 10
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 0, 0, 1)
+Button/colors/font_outline_color = Color(0, 0, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/constants/outline_size = 5
+Button/font_sizes/font_size = 32
+Button/styles/focus = SubResource("StyleBoxFlat_n45e2")
+Button/styles/hover = SubResource("StyleBoxFlat_ce3w2")
+Button/styles/normal = SubResource("StyleBoxFlat_1ehe0")
+Button/styles/pressed = SubResource("StyleBoxFlat_opfnp")
+HSlider/constants/grabber_offset = 12
+HSlider/icons/grabber = SubResource("AtlasTexture_p71od")
+HSlider/icons/grabber_highlight = SubResource("AtlasTexture_21pf2")
+HSlider/icons/tick = SubResource("GradientTexture1D_1o0nq")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_qcb72")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_7ousf")
+HSlider/styles/slider = SubResource("StyleBoxFlat_a81gu")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(1, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 1, 1)
+Label/constants/outline_size = 5
+Label/constants/shadow_offset_x = 4
+Label/constants/shadow_offset_y = 4
+Label/constants/shadow_outline_size = 4
+Label/font_sizes/font_size = 21
+Label/styles/normal = SubResource("StyleBoxFlat_p71od")

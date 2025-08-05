@@ -1,0 +1,182 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcpeiy1krx3x7"]
+
+[ext_resource type="Texture2D" uid="uid://ds2kkt34n58xq" path="res://Game_Logo.png" id="1_1ehe0"]
+[ext_resource type="Shader" uid="uid://bs2jmico0hpi5" path="res://Scenes/Shaders/ghost edges.gdshader" id="1_48xlc"]
+[ext_resource type="Texture2D" uid="uid://c6v8tgledggvk" path="res://Game_Art.png" id="2_1ehe0"]
+[ext_resource type="Theme" uid="uid://m1dopghrmfc" path="res://Assets/Ui/main_theme.tres" id="4_ce3w2"]
+[ext_resource type="AudioStream" uid="uid://bstvftypxw2ym" path="res://Assets/Music/Oh_soBeutiful_fradile.ogg" id="4_n45e2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ce3w2"]
+shader = ExtResource("1_48xlc")
+shader_parameter/test_texture = ExtResource("2_1ehe0")
+
+[node name="Main_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameLogo" type="Sprite2D" parent="."]
+position = Vector2(320, 180)
+scale = Vector2(0.234949, 0.20979)
+texture = ExtResource("1_1ehe0")
+
+[node name="GameArt" type="Sprite2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_ce3w2")
+scale = Vector2(0.492687, 0.17192)
+texture = ExtResource("2_1ehe0")
+centered = false
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="OhSoBeutifulFradile" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_n45e2")
+volume_db = -10.0
+autoplay = true
+
+[node name="Main" type="VBoxContainer" parent="."]
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="New_game" type="Button" parent="Main"]
+layout_mode = 2
+theme = ExtResource("4_ce3w2")
+text = "New loop
+"
+
+[node name="Options" type="Button" parent="Main"]
+layout_mode = 2
+theme = ExtResource("4_ce3w2")
+text = "Options"
+
+[node name="Phase select" type="Button" parent="Main"]
+layout_mode = 2
+theme = ExtResource("4_ce3w2")
+text = "--LOCKED--"
+
+[node name="Exit" type="Button" parent="Main"]
+layout_mode = 2
+theme = ExtResource("4_ce3w2")
+text = "Exit
+"
+
+[node name="Options" type="VBoxContainer" parent="."]
+visible = false
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Back" type="Button" parent="Options"]
+layout_mode = 2
+theme = ExtResource("4_ce3w2")
+text = "Back"
+
+[node name="Music" type="HBoxContainer" parent="Options"]
+layout_mode = 2
+
+[node name="Music" type="Label" parent="Options/Music"]
+layout_mode = 2
+theme = ExtResource("4_ce3w2")
+text = "Music"
+
+[node name="HSlider" type="HSlider" parent="Options/Music"]
+z_index = -1
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+theme = ExtResource("4_ce3w2")
+step = 5.0
+
+[node name="Sfx" type="HBoxContainer" parent="Options"]
+layout_mode = 2
+
+[node name="Sfx" type="Label" parent="Options/Sfx"]
+layout_mode = 2
+theme = ExtResource("4_ce3w2")
+text = "Sfx___"
+
+[node name="HSlider" type="HSlider" parent="Options/Sfx"]
+z_index = -1
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+theme = ExtResource("4_ce3w2")
+step = 5.0
+
+[node name="Phases" type="VBoxContainer" parent="."]
+visible = false
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Day1" type="Button" parent="Phases"]
+layout_mode = 2
+theme = ExtResource("4_ce3w2")
+text = "Day - 1
+"
+
+[node name="Day2" type="Button" parent="Phases"]
+layout_mode = 2
+theme = ExtResource("4_ce3w2")
+text = "Day - 2"
+
+[node name="Day3" type="Button" parent="Phases"]
+layout_mode = 2
+theme = ExtResource("4_ce3w2")
+text = "Day - 3"
+
+[node name="Room" type="Button" parent="Phases"]
+layout_mode = 2
+theme = ExtResource("4_ce3w2")
+text = "Room - 4
+"
+
+[node name="Back" type="Button" parent="Phases"]
+layout_mode = 2
+theme = ExtResource("4_ce3w2")
+text = "Back
+"

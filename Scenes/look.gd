@@ -16,8 +16,8 @@ var menu_opened = false
 func _ready() -> void:
 	tp_indicator.position = position - Vector3(0,2,0)
 func _process(delta: float) -> void:
-	if not can_look: return
-	var normilized_mouse = Vector2(0.5,0.5) - (get_viewport().get_mouse_position() / Vector2(get_viewport().get_visible_rect().size))
+	if not can_look or menu_opened: return
+	var normilized_mouse = Vector2(0.5,0.5) - ($"../".cursor_pos / Vector2(get_viewport().get_visible_rect().size))
 	if normilized_mouse.x > 0:
 		normilized_mouse.x = normilized_mouse.x - 0.2
 		if normilized_mouse.x < 0: normilized_mouse.x = 0
@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 	rotation_degrees.x += -rotation_degrees.x * delta * 5
 	
 	var space_state = get_world_3d().direct_space_state
-	var mousepos = get_viewport().get_mouse_position()
+	var mousepos = $"../".cursor_pos
 
 	var origin = project_ray_origin(mousepos)
 	var end = origin + project_ray_normal(mousepos) * RAY_LENGTH
@@ -86,7 +86,7 @@ func _process(delta: float) -> void:
 		if not tp_indicator.get_node("AnimatedSprite3D").is_playing():
 			tp_indicator.visible = false
 
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and mouseDebounce:
+	if Input.is_action_just_pressed("select") and mouseDebounce:
 		mouseDebounce = false
 		if result and animation_switch == "Loop":
 			animation_switch = "End"
